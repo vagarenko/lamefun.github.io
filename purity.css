@@ -163,10 +163,6 @@ body {
 
 /*----------------------------------------------------------------------------*/
 
-#module-header .caption {
-  font-size: 180%;
-}
-
 h1,
 #synopsis .caption,
 #module-list .caption,
@@ -177,8 +173,12 @@ h1,
   font-size: 25px;
 }
 
+h1.module-name {
+  font-size: 30px;
+}
+
 h2 {
-  font-size: 22px;
+  font-size: 21px;
   font-weight: bold;
 }
 
@@ -194,8 +194,8 @@ h4,
 }
 
 h5 {
-  font-size: 13px; 
   font-weight: bold;
+  font-style: italic;
 }
 
 /*----------------------------------------------------------------------------*/
@@ -439,10 +439,15 @@ table.info {
 
 /*----------------------------------------------------------------------------*/
 
-div#style-menu-holder {
+#style-menu-holder {
   position: relative;
   z-index: 2;
   display: inline;
+}
+
+#style-menu-holder a.dropdown:after {
+  content: " ";
+  font-family: "FontAwesome";
 }
 
 #style-menu {
@@ -849,16 +854,22 @@ div#style-menu-holder {
 /* Wide screen support                                                        */
 /*----------------------------------------------------------------------------*/
 
-@media all and (min-width: 320px) {
+@media all and (max-width: 320px) {
+  #content {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+@media all and (max-width: 740px) {
   #content {
     margin-left: 15px;
     margin-right: 15px;
   }
 }
 
-@media all and (min-width: 700px) {
+@media all and (min-width: 740px) {
   #content {
-    width: 65%;
     margin-left: auto;
     margin-right: auto;
   }
@@ -876,9 +887,10 @@ div#style-menu-holder {
   }
 }
 
-@media all and (min-width: 700px) and (max-width: 1200px) {
+@media all and (min-width: 740px) and (max-width: 1200px) {
   #content {
-    min-width: 600px;
+    width: 100%;
+    max-width: 700px;
   }
 
   #sidebar {
@@ -900,13 +912,13 @@ div#style-menu-holder {
 
 @media all and (min-width: 1200px) {
   #content {
-    min-width: 1100px;
+    width: 1040px;
     position: relative;
-    padding-right: 300px;
+    padding-right: 340px;
   }
 
   #sidebar {
-    width: 270px;
+    width: 300px;
     position: absolute;
     right: 0;
     top: 0;
