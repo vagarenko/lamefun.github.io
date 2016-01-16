@@ -252,20 +252,20 @@ h1, h2, h3, h4, h5,
 
 ul.links {
   list-style: none;
-  text-align: left;
-  float: right;
   display: block;
-  margin: 0 0 0 15px;
+  margin: 0;
+  padding: 0;
 }
 
 ul.links li {
   display: inline-block;
   white-space: nowrap;
+  margin: 0;
   padding: 0;
 }
 
 ul.links li a {
-  padding: 3em 7em;
+  padding: 8px;
 }
 
 /*----------------------------------------------------------------------------*/
@@ -376,8 +376,12 @@ strong.userinput:before {
 }
 
 #package-header .caption {
-  clear: both;
+  display: block;
   margin: 0;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #package-header p,
@@ -393,15 +397,20 @@ strong.userinput:before {
   color: #d1cddc;
   font-weight: normal;
   font-style: normal;
-  padding-right: 1em;
+  padding-right: 15px;
   position: relative;
 }
 
 /*----------------------------------------------------------------------------*/
 
+#page-menu {
+  text-align: center;
+}
+
 #page-menu a {
   text-decoration: none;
-  margin-left: 1.6em;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 #page-menu a:link,
@@ -427,14 +436,22 @@ table.info {
   text-align: left;
   padding-top: 4px;
   padding-bottom: 4px;
+  vertical-align: top;
+  line-height: 20px;
 }
 
-.info td {
-  padding-left: 10px;
+.info th {
+  font-size: 12px;
+  line-height: 20px;
 }
 
 .info th:after {
   content: ":";
+}
+
+.info td {
+  padding-left: 10px;
+  white-space: pre-line;
 }
 
 /*----------------------------------------------------------------------------*/
@@ -874,16 +891,19 @@ table.info {
     margin-right: auto;
   }
 
-  ul.links {
-    display: inline-table;
-  }
-
-  ul.links li {
-    display: inline;
+  #package-header {
+    display: flex;
+    flex-direction: row-reverse;
   }
 
   #package-header .caption {
-    clear: none;
+    flex-shrink: 1;
+    width: 100%;
+    text-align: left;
+  }
+
+  #page-menu {
+    flex-shrink: 0;
   }
 }
 
@@ -911,10 +931,14 @@ table.info {
 }
 
 @media all and (min-width: 1200px) {
-  #content {
+  #content.has-sidebar {
     width: 1040px;
     position: relative;
     padding-right: 340px;
+  }
+
+  #content {
+    width: 700px;
   }
 
   #sidebar {
