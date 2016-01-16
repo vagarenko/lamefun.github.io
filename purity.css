@@ -172,17 +172,18 @@ h1,
 #module-list .caption,
 #index .caption,
 #table-of-contents .caption,
+#module-info .caption,
 #description .caption {
-  font-size: 160%;
+  font-size: 25px;
 }
 
 h2 {
-  font-size: 140%;
+  font-size: 22px;
   font-weight: bold;
 }
 
 h3 {
-  font-size: 120%;
+  font-size: 18px;
   font-weight: bold;
 }
 
@@ -193,7 +194,7 @@ h4,
 }
 
 h5 {
-  font-size: 80%; 
+  font-size: 13px; 
   font-weight: bold;
 }
 
@@ -240,6 +241,7 @@ h1, h2, h3, h4, h5,
 #index .caption,
 #module-header .caption,
 #table-of-contents .caption,
+#module-info .caption,
 #description .caption,
 #synopsis .caption,
 .top p.src {
@@ -353,6 +355,7 @@ strong.userinput:before {
 /*----------------------------------------------------------------------------*/
 
 #content {
+  box-sizing: border-box;
   margin: 0 auto;
   padding-left: 10px;
   padding-right: 10px;
@@ -418,15 +421,12 @@ table.info {
   background-color: #fff;
   border-spacing: 0;
   margin: 0;
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 
 .info td, .info th {
   text-align: left;
-  padding: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .info td {
@@ -512,17 +512,17 @@ div#style-menu-holder {
 
 #table-of-contents ul {
   list-style: none;
-  margin-left: 1.5em;
+  margin-left: 0;
 }
 
 #table-of-contents ul ul {
-  margin-left: 1.5em;
+  margin-left: 20px;
 }
 
 #table-of-contents li {
   list-style: none;
-  margin-top: 0.6em;
-  margin-bottom: 0.6em;
+  margin-top: 8px;
+  margin-bottom: 8px;
   font-size: 95%;
 }
 
@@ -857,6 +857,12 @@ div#style-menu-holder {
 }
 
 @media all and (min-width: 700px) {
+  #content {
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   ul.links {
     display: inline-table;
   }
@@ -870,12 +876,31 @@ div#style-menu-holder {
   }
 }
 
-@media all and (min-width: 1000px) {
+@media all and (min-width: 700px) and (max-width: 1200px) {
   #content {
-    width: 45%;
-    min-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
+    min-width: 600px;
+  }
+
+  #sidebar {
+    display: flex;
+    width: 100%;
+  }
+
+  #module-info {
+    width: 100%;
+    flex-shrink: 1;
+  }
+
+  #table-of-contents {
+    width: 100%;
+    margin-left: 30px;
+    flex-shrink: 1;
+  }
+}
+
+@media all and (min-width: 1200px) {
+  #content {
+    min-width: 1100px;
     position: relative;
     padding-right: 300px;
   }
@@ -901,6 +926,11 @@ div#style-menu-holder {
 
   #description .caption {
     display: none;
+  }
+
+  #table-of-contents .caption,
+  #module-info .caption {
+    font-size: 18px;
   }
 }
 
