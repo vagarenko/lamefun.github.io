@@ -1,0 +1,2391 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+><head
+  ><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+     /><meta name="viewport" content="width=device-width, initial-scale=1.0"
+     /><title
+    >Pipes</title
+    ><link href="purity.css" rel="stylesheet" type="text/css" title="Purity"
+     /><link href="ocean.css" rel="alternate stylesheet" type="text/css" title="Ocean"
+     /><script src="haddock-util.js" type="text/javascript"
+    ></script
+    ><script type="text/javascript"
+    >//<![CDATA[
+window.onload = function () {pageLoad();setSynopsis("mini_Pipes.html");};
+//]]>
+</script
+    ></head
+  ><body
+  ><div id="package-header"
+    ><ul class="links" id="page-menu"
+      ><li
+	><a href="index.html"
+	  >Contents</a
+	  ></li
+	><li
+	><a href="doc-index.html"
+	  >Index</a
+	  ></li
+	></ul
+      ><p class="caption empty"
+      >&nbsp;</p
+      ></div
+    ><div id="content"
+    ><h1 class="module-name"
+      >Pipes</h1
+      ><div id="sidebar"
+      ><div id="module-info"
+	><table class="info"
+	  ><tr
+	    ><th
+	      >Copyright</th
+	      ><td
+	      >(c) Some Guy, 2013
+                  Someone Else, 2014</td
+	      ></tr
+	    ><tr
+	    ><th
+	      >License</th
+	      ><td
+	      >GPL-3</td
+	      ></tr
+	    ><tr
+	    ><th
+	      >Maintainer</th
+	      ><td
+	      >sample@email.com</td
+	      ></tr
+	    ><tr
+	    ><th
+	      >Stability</th
+	      ><td
+	      >experimental</td
+	      ></tr
+	    ><tr
+	    ><th
+	      >Portability</th
+	      ><td
+	      >POSIX</td
+	      ></tr
+	    ><tr
+	    ><th
+	      >Safe Haskell</th
+	      ><td
+	      >Trustworthy</td
+	      ></tr
+	    ></table
+	  ></div
+	><div id="table-of-contents"
+	><p class="caption"
+	  >Contents</p
+	  ><ul
+	  ><li
+	    ><a href="#g:1"
+	      >The Proxy Monad Transformer</a
+	      ><ul
+	      ><li
+		><a href="#g:2"
+		  >Producers</a
+		  ></li
+		><li
+		><a href="#g:3"
+		  >Consumers</a
+		  ></li
+		><li
+		><a href="#g:4"
+		  >Pipes</a
+		  ></li
+		></ul
+	      ></li
+	    ><li
+	    ><a href="#g:5"
+	      >ListT</a
+	      ></li
+	    ><li
+	    ><a href="#g:6"
+	      >Utilities</a
+	      ></li
+	    ><li
+	    ><a href="#g:7"
+	      >Re-exports</a
+	      ></li
+	    ></ul
+	  ></div
+	></div
+      ><div id="description"
+      ><p class="caption"
+	>Description</p
+	><div class="doc"
+	><p
+	  >This module is the recommended entry point to the <code
+	    >pipes</code
+	    > library.</p
+	  ><p
+	  >Read <a href="Pipes-Tutorial.html"
+	    >Pipes.Tutorial</a
+	    > if you want a tutorial explaining how to use this
+    library.</p
+	  ></div
+	></div
+      ><div id="synopsis"
+      ><p id="control.syn" class="caption expander" onclick="toggleSection('syn')"
+	>Synopsis</p
+	><ul id="section.syn" class="hide" onclick="toggleSection('syn')"
+	><li class="src short"
+	  ><span class="keyword"
+	    >data</span
+	    > <a href="#t:Proxy"
+	    >Proxy</a
+	    > a' a b' b m r</li
+	  ><li class="src short"
+	  ><span class="keyword"
+	    >data</span
+	    > <a href="#t:X"
+	    >X</a
+	    ></li
+	  ><li class="src short"
+	  ><span class="keyword"
+	    >type</span
+	    > <a href="#t:Effect"
+	    >Effect</a
+	    > = <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > <a href="Pipes.html#t:X"
+	    >X</a
+	    > () () <a href="Pipes.html#t:X"
+	    >X</a
+	    ></li
+	  ><li class="src short"
+	  ><span class="keyword"
+	    >type</span
+	    > <a href="#t:Effect-39-"
+	    >Effect'</a
+	    > m r = <span class="keyword"
+	    >forall</span
+	    > x' x y' y. <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > x' x y' y m r</li
+	  ><li class="src short"
+	  ><a href="#v:runEffect"
+	    >runEffect</a
+	    > :: Monad m =&gt; <a href="Pipes.html#t:Effect"
+	    >Effect</a
+	    > m r -&gt; m r</li
+	  ><li class="src short"
+	  ><span class="keyword"
+	    >type</span
+	    > <a href="#t:Producer"
+	    >Producer</a
+	    > b = <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > <a href="Pipes.html#t:X"
+	    >X</a
+	    > () () b</li
+	  ><li class="src short"
+	  ><span class="keyword"
+	    >type</span
+	    > <a href="#t:Producer-39-"
+	    >Producer'</a
+	    > b m r = <span class="keyword"
+	    >forall</span
+	    > x' x. <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > x' x () b m r</li
+	  ><li class="src short"
+	  ><a href="#v:yield"
+	    >yield</a
+	    > :: Monad m =&gt; a -&gt; <a href="Pipes.html#t:Producer-39-"
+	    >Producer'</a
+	    > a m ()</li
+	  ><li class="src short"
+	  ><a href="#v:for"
+	    >for</a
+	    > :: Monad m =&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > x' x b' b m a' -&gt; (b -&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > x' x c' c m b') -&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > x' x c' c m a'</li
+	  ><li class="src short"
+	  ><a href="#v:-126--62-"
+	    >(~&gt;)</a
+	    > :: Monad m =&gt; (a -&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > x' x b' b m a') -&gt; (b -&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > x' x c' c m b') -&gt; a -&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > x' x c' c m a'</li
+	  ><li class="src short"
+	  ><a href="#v:-60--126-"
+	    >(&lt;~)</a
+	    > :: Monad m =&gt; (b -&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > x' x c' c m b') -&gt; (a -&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > x' x b' b m a') -&gt; a -&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > x' x c' c m a'</li
+	  ><li class="src short"
+	  ><span class="keyword"
+	    >type</span
+	    > <a href="#t:Consumer"
+	    >Consumer</a
+	    > a = <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > () a () <a href="Pipes.html#t:X"
+	    >X</a
+	    ></li
+	  ><li class="src short"
+	  ><span class="keyword"
+	    >type</span
+	    > <a href="#t:Consumer-39-"
+	    >Consumer'</a
+	    > a m r = <span class="keyword"
+	    >forall</span
+	    > y' y. <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > () a y' y m r</li
+	  ><li class="src short"
+	  ><a href="#v:await"
+	    >await</a
+	    > :: Monad m =&gt; <a href="Pipes.html#t:Consumer-39-"
+	    >Consumer'</a
+	    > a m a</li
+	  ><li class="src short"
+	  ><a href="#v:-62--126-"
+	    >(&gt;~)</a
+	    > :: Monad m =&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > a' a y' y m b -&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > () b y' y m c -&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > a' a y' y m c</li
+	  ><li class="src short"
+	  ><a href="#v:-126--60-"
+	    >(~&lt;)</a
+	    > :: Monad m =&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > () b y' y m c -&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > a' a y' y m b -&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > a' a y' y m c</li
+	  ><li class="src short"
+	  ><span class="keyword"
+	    >type</span
+	    > <a href="#t:Pipe"
+	    >Pipe</a
+	    > a b = <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > () a () b</li
+	  ><li class="src short"
+	  ><a href="#v:cat"
+	    >cat</a
+	    > :: Monad m =&gt; <a href="Pipes.html#t:Pipe"
+	    >Pipe</a
+	    > a a m r</li
+	  ><li class="src short"
+	  ><a href="#v:-62--45--62-"
+	    >(&gt;-&gt;)</a
+	    > :: Monad m =&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > a' a () b m r -&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > () b c' c m r -&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > a' a c' c m r</li
+	  ><li class="src short"
+	  ><a href="#v:-60--45--60-"
+	    >(&lt;-&lt;)</a
+	    > :: Monad m =&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > () b c' c m r -&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > a' a () b m r -&gt; <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > a' a c' c m r</li
+	  ><li class="src short"
+	  ><span class="keyword"
+	    >newtype</span
+	    > <a href="#t:ListT"
+	    >ListT</a
+	    > m a = <a href="#v:Select"
+	    >Select</a
+	    > {<ul class="subs"
+	    ><li
+	      ><a href="#v:enumerate"
+		>enumerate</a
+		> :: <a href="Pipes.html#t:Producer"
+		>Producer</a
+		> a m ()</li
+	      ></ul
+	    >}</li
+	  ><li class="src short"
+	  ><a href="#v:runListT"
+	    >runListT</a
+	    > :: Monad m =&gt; <a href="Pipes.html#t:ListT"
+	    >ListT</a
+	    > m a -&gt; m ()</li
+	  ><li class="src short"
+	  ><span class="keyword"
+	    >class</span
+	    > <a href="#t:Enumerable"
+	    >Enumerable</a
+	    > t <span class="keyword"
+	    >where</span
+	    ><ul class="subs"
+	    ><li
+	      ><a href="#v:toListT"
+		>toListT</a
+		> :: Monad m =&gt; t m a -&gt; <a href="Pipes.html#t:ListT"
+		>ListT</a
+		> m a</li
+	      ></ul
+	    ></li
+	  ><li class="src short"
+	  ><a href="#v:next"
+	    >next</a
+	    > :: Monad m =&gt; <a href="Pipes.html#t:Producer"
+	    >Producer</a
+	    > a m r -&gt; m (Either r (a, <a href="Pipes.html#t:Producer"
+	    >Producer</a
+	    > a m r))</li
+	  ><li class="src short"
+	  ><a href="#v:each"
+	    >each</a
+	    > :: (Monad m, F.Foldable f) =&gt; f a -&gt; <a href="Pipes.html#t:Producer-39-"
+	    >Producer'</a
+	    > a m ()</li
+	  ><li class="src short"
+	  ><a href="#v:every"
+	    >every</a
+	    > :: (Monad m, <a href="Pipes.html#t:Enumerable"
+	    >Enumerable</a
+	    > t) =&gt; t m a -&gt; <a href="Pipes.html#t:Producer-39-"
+	    >Producer'</a
+	    > a m ()</li
+	  ><li class="src short"
+	  ><a href="#v:discard"
+	    >discard</a
+	    > :: Monad m =&gt; a -&gt; m ()</li
+	  ></ul
+	></div
+      ><div id="interface"
+      ><h1 id="g:1"
+	>The Proxy Monad Transformer</h1
+	><div class="top"
+	><p class="src"
+	  ><span class="keyword"
+	    >data</span
+	    > <a name="t:Proxy" class="def"
+	    >Proxy</a
+	    > a' a b' b m r</p
+	  ><div class="doc"
+	  ><p
+	    >A <code
+	      ><a href="Pipes.html#t:Proxy"
+		>Proxy</a
+		></code
+	      > is a monad transformer that receives and sends information on both
+    an upstream and downstream interface.</p
+	    ><p
+	    >The type variables signify:</p
+	    ><ul
+	    ><li
+	      ><code
+		>a'</code
+		> and <code
+		>a</code
+		> - The upstream interface, where <code
+		>(a')</code
+		>s go out and <code
+		>(a)</code
+		>s
+      come in</li
+	      ><li
+	      ><code
+		>b'</code
+		> and <code
+		>b</code
+		> - The downstream interface, where <code
+		>(b)</code
+		>s go out and <code
+		>(b')</code
+		>s
+      come in</li
+	      ><li
+	      ><code
+		>m </code
+		> - The base monad</li
+	      ><li
+	      ><code
+		>r </code
+		> - The return value</li
+	      ></ul
+	    ></div
+	  ><div class="subs instances"
+	  ><p id="control.i:Proxy" class="caption collapser" onclick="toggleSection('i:Proxy')"
+	    >Instances</p
+	    ><div id="section.i:Proxy" class="show"
+	    ><table
+	      ><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >MonadError e m =&gt; MonadError e (<a href="Pipes.html#t:Proxy"
+		      >Proxy</a
+		      > a' a b' b m)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >MonadReader r m =&gt; MonadReader r (<a href="Pipes.html#t:Proxy"
+		      >Proxy</a
+		      > a' a b' b m)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >MonadState s m =&gt; MonadState s (<a href="Pipes.html#t:Proxy"
+		      >Proxy</a
+		      > a' a b' b m)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >MonadWriter w m =&gt; MonadWriter w (<a href="Pipes.html#t:Proxy"
+		      >Proxy</a
+		      > a' a b' b m)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >MonadTrans (<a href="Pipes.html#t:Proxy"
+		      >Proxy</a
+		      > a' a b' b)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >MMonad (<a href="Pipes.html#t:Proxy"
+		      >Proxy</a
+		      > a' a b' b)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >MFunctor (<a href="Pipes.html#t:Proxy"
+		      >Proxy</a
+		      > a' a b' b)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >Monad m =&gt; Monad (<a href="Pipes.html#t:Proxy"
+		      >Proxy</a
+		      > a' a b' b m)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >Monad m =&gt; Functor (<a href="Pipes.html#t:Proxy"
+		      >Proxy</a
+		      > a' a b' b m)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >Monad m =&gt; Applicative (<a href="Pipes.html#t:Proxy"
+		      >Proxy</a
+		      > a' a b' b m)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >MonadPlus m =&gt; MonadPlus (<a href="Pipes.html#t:Proxy"
+		      >Proxy</a
+		      > a' a b' b m)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >MonadPlus m =&gt; Alternative (<a href="Pipes.html#t:Proxy"
+		      >Proxy</a
+		      > a' a b' b m)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >MonadIO m =&gt; MonadIO (<a href="Pipes.html#t:Proxy"
+		      >Proxy</a
+		      > a' a b' b m)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >(Monad m, Monoid r) =&gt; Monoid (<a href="Pipes.html#t:Proxy"
+		      >Proxy</a
+		      > a' a b' b m r)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		></table
+	      ></div
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><span class="keyword"
+	    >data</span
+	    > <a name="t:X" class="def"
+	    >X</a
+	    ></p
+	  ><div class="doc"
+	  ><p
+	    >The empty type, used to close output ends</p
+	    ><p
+	    >When <code
+	      >Data.Void</code
+	      > is merged into <code
+	      >base</code
+	      >, this will change to:</p
+	    ><pre
+	    >type X = Void</pre
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><span class="keyword"
+	    >type</span
+	    > <a name="t:Effect" class="def"
+	    >Effect</a
+	    > = <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > <a href="Pipes.html#t:X"
+	    >X</a
+	    > () () <a href="Pipes.html#t:X"
+	    >X</a
+	    ></p
+	  ><div class="doc"
+	  ><p
+	    >An effect in the base monad</p
+	    ><p
+	    ><code
+	      ><a href="Pipes.html#t:Effect"
+		>Effect</a
+		></code
+	      >s neither <code
+	      ><a href="Pipes.html#v:await"
+		>await</a
+		></code
+	      > nor <code
+	      ><a href="Pipes.html#v:yield"
+		>yield</a
+		></code
+	      ></p
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><span class="keyword"
+	    >type</span
+	    > <a name="t:Effect-39-" class="def"
+	    >Effect'</a
+	    > m r = <span class="keyword"
+	    >forall</span
+	    > x' x y' y. <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > x' x y' y m r</p
+	  ><div class="doc"
+	  ><p
+	    >Like <code
+	      ><a href="Pipes.html#t:Effect"
+		>Effect</a
+		></code
+	      >, but with a polymorphic type</p
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><a name="v:runEffect" class="def"
+	    >runEffect</a
+	    > :: Monad m =&gt; <a href="Pipes.html#t:Effect"
+	    >Effect</a
+	    > m r -&gt; m r</p
+	  ><div class="doc"
+	  ><p
+	    >Run a self-contained <code
+	      ><a href="Pipes.html#t:Effect"
+		>Effect</a
+		></code
+	      >, converting it back to the base monad</p
+	    ></div
+	  ></div
+	><h2 id="g:2"
+	>Producers</h2
+	><div class="doc"
+	><p
+	  >Use <code
+	    ><a href="Pipes.html#v:yield"
+	      >yield</a
+	      ></code
+	    > to produce output and (<code
+	    ><a href="Pipes.html#v:-126--62-"
+	      >~&gt;</a
+	      ></code
+	    >) / <code
+	    ><a href="Pipes.html#v:for"
+	      >for</a
+	      ></code
+	    > to substitute <code
+	    ><a href="Pipes.html#v:yield"
+	      >yield</a
+	      ></code
+	    >s.</p
+	  ><p
+	  ><code
+	    ><a href="Pipes.html#v:yield"
+	      >yield</a
+	      ></code
+	    > and (<code
+	    ><a href="Pipes.html#v:-126--62-"
+	      >~&gt;</a
+	      ></code
+	    >) obey the <code
+	    ><a href="Control-Category.html#v:Category"
+	      >Category</a
+	      ></code
+	    > laws:</p
+	  ><pre
+	  >-- Substituting 'yield' with 'f' gives 'f'
+<code
+	    ><a href="Pipes.html#v:yield"
+	      >yield</a
+	      ></code
+	    > <code
+	    ><a href="Pipes.html#v:-126--62-"
+	      >~&gt;</a
+	      ></code
+	    > f = f
+
+-- Substituting every 'yield' with another 'yield' does nothing
+f <code
+	    ><a href="Pipes.html#v:-126--62-"
+	      >~&gt;</a
+	      ></code
+	    > <code
+	    ><a href="Pipes.html#v:yield"
+	      >yield</a
+	      ></code
+	    > = f
+
+-- 'yield' substitution is associative
+(f <code
+	    ><a href="Pipes.html#v:-126--62-"
+	      >~&gt;</a
+	      ></code
+	    > g) <code
+	    ><a href="Pipes.html#v:-126--62-"
+	      >~&gt;</a
+	      ></code
+	    > h = f <code
+	    ><a href="Pipes.html#v:-126--62-"
+	      >~&gt;</a
+	      ></code
+	    > (g <code
+	    ><a href="Pipes.html#v:-126--62-"
+	      >~&gt;</a
+	      ></code
+	    > h)
+</pre
+	  ><p
+	  >These are equivalent to the following &quot;for loop laws&quot;:</p
+	  ><pre
+	  >-- Looping over a single yield simplifies to function application
+<code
+	    ><a href="Pipes.html#v:for"
+	      >for</a
+	      ></code
+	    > (<code
+	    ><a href="Pipes.html#v:yield"
+	      >yield</a
+	      ></code
+	    > x) f = f x
+
+-- Re-yielding every element of a stream returns the original stream
+<code
+	    ><a href="Pipes.html#v:for"
+	      >for</a
+	      ></code
+	    > s <code
+	    ><a href="Pipes.html#v:yield"
+	      >yield</a
+	      ></code
+	    > = s
+
+-- Nested for loops can become a sequential <code
+	    ><a href="Pipes.html#v:for"
+	      >for</a
+	      ></code
+	    > loops if the inner loop
+-- body ignores the outer loop variable
+<code
+	    ><a href="Pipes.html#v:for"
+	      >for</a
+	      ></code
+	    > s (\a -&gt; <code
+	    ><a href="Pipes.html#v:for"
+	      >for</a
+	      ></code
+	    > (f a) g) = <code
+	    ><a href="Pipes.html#v:for"
+	      >for</a
+	      ></code
+	    > (<code
+	    ><a href="Pipes.html#v:for"
+	      >for</a
+	      ></code
+	    > s f) g = <code
+	    ><a href="Pipes.html#v:for"
+	      >for</a
+	      ></code
+	    > s (f <code
+	    ><a href="Pipes.html#v:-126--62-"
+	      >~&gt;</a
+	      ></code
+	    > g)
+</pre
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><span class="keyword"
+	    >type</span
+	    > <a name="t:Producer" class="def"
+	    >Producer</a
+	    > b = <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > <a href="Pipes.html#t:X"
+	    >X</a
+	    > () () b</p
+	  ><div class="doc"
+	  ><p
+	    ><code
+	      ><a href="Pipes.html#t:Producer"
+		>Producer</a
+		></code
+	      >s can only <code
+	      ><a href="Pipes.html#v:yield"
+		>yield</a
+		></code
+	      ></p
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><span class="keyword"
+	    >type</span
+	    > <a name="t:Producer-39-" class="def"
+	    >Producer'</a
+	    > b m r = <span class="keyword"
+	    >forall</span
+	    > x' x. <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > x' x () b m r</p
+	  ><div class="doc"
+	  ><p
+	    >Like <code
+	      ><a href="Pipes.html#t:Producer"
+		>Producer</a
+		></code
+	      >, but with a polymorphic type</p
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><a name="v:yield" class="def"
+	    >yield</a
+	    > :: Monad m =&gt; a -&gt; <a href="Pipes.html#t:Producer-39-"
+	    >Producer'</a
+	    > a m ()</p
+	  ><div class="doc"
+	  ><p
+	    >Produce a value</p
+	    ><pre
+	    ><code
+	      ><a href="Pipes.html#v:yield"
+		>yield</a
+		></code
+	      > :: <code
+	      >Monad</code
+	      > m =&gt; a -&gt; <code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      > x a m ()
+</pre
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><a name="v:for" class="def"
+	    >for</a
+	    ></p
+	  ><div class="subs arguments"
+	  ><p class="caption"
+	    >Arguments</p
+	    ><table
+	    ><tr
+	      ><td class="src"
+		>:: Monad m</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>=&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > x' x b' b m a'</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>-&gt; (b -&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > x' x c' c m b')</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>-&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > x' x c' c m a'</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ></table
+	    ></div
+	  ><div class="doc"
+	  ><p
+	    ><code
+	      >(for p body)</code
+	      > loops over <code
+	      >p</code
+	      > replacing each <code
+	      ><a href="Pipes.html#v:yield"
+		>yield</a
+		></code
+	      > with <code
+	      >body</code
+	      >.</p
+	    ><pre
+	    ><code
+	      ><a href="Pipes.html#v:for"
+		>for</a
+		></code
+	      > :: <code
+	      >Monad</code
+	      > m =&gt; <code
+	      ><a href="Pipes.html#t:Producer"
+		>Producer</a
+		></code
+	      > b m r -&gt; (b -&gt; <code
+	      ><a href="Pipes.html#t:Effect"
+		>Effect</a
+		></code
+	      >       m ()) -&gt; <code
+	      ><a href="Pipes.html#t:Effect"
+		>Effect</a
+		></code
+	      >       m r
+<code
+	      ><a href="Pipes.html#v:for"
+		>for</a
+		></code
+	      > :: <code
+	      >Monad</code
+	      > m =&gt; <code
+	      ><a href="Pipes.html#t:Producer"
+		>Producer</a
+		></code
+	      > b m r -&gt; (b -&gt; <code
+	      ><a href="Pipes.html#t:Producer"
+		>Producer</a
+		></code
+	      >   c m ()) -&gt; <code
+	      ><a href="Pipes.html#t:Producer"
+		>Producer</a
+		></code
+	      >   c m r
+<code
+	      ><a href="Pipes.html#v:for"
+		>for</a
+		></code
+	      > :: <code
+	      >Monad</code
+	      > m =&gt; <code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      >   x b m r -&gt; (b -&gt; <code
+	      ><a href="Pipes.html#t:Consumer"
+		>Consumer</a
+		></code
+	      > x   m ()) -&gt; <code
+	      ><a href="Pipes.html#t:Consumer"
+		>Consumer</a
+		></code
+	      > x   m r
+<code
+	      ><a href="Pipes.html#v:for"
+		>for</a
+		></code
+	      > :: <code
+	      >Monad</code
+	      > m =&gt; <code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      >   x b m r -&gt; (b -&gt; <code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      >     x c m ()) -&gt; <code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      >     x c m r
+</pre
+	    ><p
+	    >The following diagrams show the flow of information:</p
+	    ><pre
+	    >                              .---&gt;   b
+                             /        |
+   +-----------+            /   +-----|-----+                 +---------------+
+   |           |           /    |     v     |                 |               |
+   |           |          /     |           |                 |               |
+x ==&gt;    p    ==&gt; b   ---'   x ==&gt;   body  ==&gt; c     =     x ==&gt; <code
+	      ><a href="Pipes.html#v:for"
+		>for</a
+		></code
+	      > p body  ==&gt; c
+   |           |                |           |                 |               |
+   |     |     |                |     |     |                 |       |       |
+   +-----|-----+                +-----|-----+                 +-------|-------+
+         v                            v                               v
+         r                            ()                              r
+</pre
+	    ><p
+	    >For a more complete diagram including bidirectional flow, see <a href="Pipes-Core.html#respond-diagram"
+	      >Pipes.Core</a
+	      >.</p
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><a name="v:-126--62-" class="def"
+	    >(~&gt;)</a
+	    > <span class="fixity"
+	    >infixr 4</span
+	    ><span class="rightedge"
+	    ></span
+	    ></p
+	  ><div class="subs arguments"
+	  ><p class="caption"
+	    >Arguments</p
+	    ><table
+	    ><tr
+	      ><td class="src"
+		>:: Monad m</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>=&gt; (a -&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > x' x b' b m a')</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>-&gt; (b -&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > x' x c' c m b')</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>-&gt; a -&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > x' x c' c m a'</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ></table
+	    ></div
+	  ><div class="doc"
+	  ><p
+	    >Compose loop bodies</p
+	    ><pre
+	    >(<code
+	      ><a href="Pipes.html#v:-126--62-"
+		>~&gt;</a
+		></code
+	      >) :: <code
+	      >Monad</code
+	      > m =&gt; (a -&gt; <code
+	      ><a href="Pipes.html#t:Producer"
+		>Producer</a
+		></code
+	      > b m r) -&gt; (b -&gt; <code
+	      ><a href="Pipes.html#t:Effect"
+		>Effect</a
+		></code
+	      >       m ()) -&gt; (a -&gt; <code
+	      ><a href="Pipes.html#t:Effect"
+		>Effect</a
+		></code
+	      >       m r)
+(<code
+	      ><a href="Pipes.html#v:-126--62-"
+		>~&gt;</a
+		></code
+	      >) :: <code
+	      >Monad</code
+	      > m =&gt; (a -&gt; <code
+	      ><a href="Pipes.html#t:Producer"
+		>Producer</a
+		></code
+	      > b m r) -&gt; (b -&gt; <code
+	      ><a href="Pipes.html#t:Producer"
+		>Producer</a
+		></code
+	      >   c m ()) -&gt; (a -&gt; <code
+	      ><a href="Pipes.html#t:Producer"
+		>Producer</a
+		></code
+	      >   c m r)
+(<code
+	      ><a href="Pipes.html#v:-126--62-"
+		>~&gt;</a
+		></code
+	      >) :: <code
+	      >Monad</code
+	      > m =&gt; (a -&gt; <code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      >   x b m r) -&gt; (b -&gt; <code
+	      ><a href="Pipes.html#t:Consumer"
+		>Consumer</a
+		></code
+	      > x   m ()) -&gt; (a -&gt; <code
+	      ><a href="Pipes.html#t:Consumer"
+		>Consumer</a
+		></code
+	      > x   m r)
+(<code
+	      ><a href="Pipes.html#v:-126--62-"
+		>~&gt;</a
+		></code
+	      >) :: <code
+	      >Monad</code
+	      > m =&gt; (a -&gt; <code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      >   x b m r) -&gt; (b -&gt; <code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      >     x c m ()) -&gt; (a -&gt; <code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      >     x c m r)
+</pre
+	    ><p
+	    >The following diagrams show the flow of information:</p
+	    ><pre
+	    >         a                    .---&gt;   b                              a
+         |                   /        |                              |
+   +-----|-----+            /   +-----|-----+                 +------|------+
+   |     v     |           /    |     v     |                 |      v      |
+   |           |          /     |           |                 |             |
+x ==&gt;    f    ==&gt; b   ---'   x ==&gt;    g    ==&gt; c     =     x ==&gt;   f <code
+	      ><a href="Pipes.html#v:-126--62-"
+		>~&gt;</a
+		></code
+	      > g  ==&gt; c
+   |           |                |           |                 |             |
+   |     |     |                |     |     |                 |      |      |
+   +-----|-----+                +-----|-----+                 +------|------+
+         v                            v                              v
+         r                            ()                             r
+</pre
+	    ><p
+	    >For a more complete diagram including bidirectional flow, see <a href="Pipes-Core.html#respond-diagram"
+	      >Pipes.Core</a
+	      >.</p
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><a name="v:-60--126-" class="def"
+	    >(&lt;~)</a
+	    > <span class="fixity"
+	    >infixl 4</span
+	    ><span class="rightedge"
+	    ></span
+	    ></p
+	  ><div class="subs arguments"
+	  ><p class="caption"
+	    >Arguments</p
+	    ><table
+	    ><tr
+	      ><td class="src"
+		>:: Monad m</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>=&gt; (b -&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > x' x c' c m b')</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>-&gt; (a -&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > x' x b' b m a')</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>-&gt; a -&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > x' x c' c m a'</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ></table
+	    ></div
+	  ><div class="doc"
+	  ><p
+	    >(<code
+	      ><a href="Pipes.html#v:-126--62-"
+		>~&gt;</a
+		></code
+	      >) with the arguments flipped</p
+	    ></div
+	  ></div
+	><h2 id="g:3"
+	>Consumers</h2
+	><div class="doc"
+	><p
+	  >Use <code
+	    ><a href="Pipes.html#v:await"
+	      >await</a
+	      ></code
+	    > to request input and (<code
+	    ><a href="Pipes.html#v:-62--126-"
+	      >&gt;~</a
+	      ></code
+	    >) to substitute <code
+	    ><a href="Pipes.html#v:await"
+	      >await</a
+	      ></code
+	    >s.</p
+	  ><p
+	  ><code
+	    ><a href="Pipes.html#v:await"
+	      >await</a
+	      ></code
+	    > and (<code
+	    ><a href="Pipes.html#v:-62--126-"
+	      >&gt;~</a
+	      ></code
+	    >) obey the <code
+	    ><a href="Control-Category.html#v:Category"
+	      >Category</a
+	      ></code
+	    > laws:</p
+	  ><pre
+	  >-- Substituting every 'await' with another 'await' does nothing
+<code
+	    ><a href="Pipes.html#v:await"
+	      >await</a
+	      ></code
+	    > <code
+	    ><a href="Pipes.html#v:-62--126-"
+	      >&gt;~</a
+	      ></code
+	    > f = f
+
+-- Substituting 'await' with 'f' gives 'f'
+f <code
+	    ><a href="Pipes.html#v:-62--126-"
+	      >&gt;~</a
+	      ></code
+	    > <code
+	    ><a href="Pipes.html#v:await"
+	      >await</a
+	      ></code
+	    > = f
+
+-- 'await' substitution is associative
+(f <code
+	    ><a href="Pipes.html#v:-62--126-"
+	      >&gt;~</a
+	      ></code
+	    > g) <code
+	    ><a href="Pipes.html#v:-62--126-"
+	      >&gt;~</a
+	      ></code
+	    > h = f <code
+	    ><a href="Pipes.html#v:-62--126-"
+	      >&gt;~</a
+	      ></code
+	    > (g <code
+	    ><a href="Pipes.html#v:-62--126-"
+	      >&gt;~</a
+	      ></code
+	    > h)
+</pre
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><span class="keyword"
+	    >type</span
+	    > <a name="t:Consumer" class="def"
+	    >Consumer</a
+	    > a = <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > () a () <a href="Pipes.html#t:X"
+	    >X</a
+	    ></p
+	  ><div class="doc"
+	  ><p
+	    ><code
+	      ><a href="Pipes.html#t:Consumer"
+		>Consumer</a
+		></code
+	      >s can only <code
+	      ><a href="Pipes.html#v:await"
+		>await</a
+		></code
+	      ></p
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><span class="keyword"
+	    >type</span
+	    > <a name="t:Consumer-39-" class="def"
+	    >Consumer'</a
+	    > a m r = <span class="keyword"
+	    >forall</span
+	    > y' y. <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > () a y' y m r</p
+	  ><div class="doc"
+	  ><p
+	    >Like <code
+	      ><a href="Pipes.html#t:Consumer"
+		>Consumer</a
+		></code
+	      >, but with a polymorphic type</p
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><a name="v:await" class="def"
+	    >await</a
+	    > :: Monad m =&gt; <a href="Pipes.html#t:Consumer-39-"
+	    >Consumer'</a
+	    > a m a</p
+	  ><div class="doc"
+	  ><p
+	    >Consume a value</p
+	    ><pre
+	    ><code
+	      ><a href="Pipes.html#v:await"
+		>await</a
+		></code
+	      > :: <code
+	      >Monad</code
+	      > m =&gt; <code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      > a y m a
+</pre
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><a name="v:-62--126-" class="def"
+	    >(&gt;~)</a
+	    > <span class="fixity"
+	    >infixr 5</span
+	    ><span class="rightedge"
+	    ></span
+	    ></p
+	  ><div class="subs arguments"
+	  ><p class="caption"
+	    >Arguments</p
+	    ><table
+	    ><tr
+	      ><td class="src"
+		>:: Monad m</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>=&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > a' a y' y m b</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>-&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > () b y' y m c</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>-&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > a' a y' y m c</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ></table
+	    ></div
+	  ><div class="doc"
+	  ><p
+	    ><code
+	      >(draw &gt;~ p)</code
+	      > loops over <code
+	      >p</code
+	      > replacing each <code
+	      ><a href="Pipes.html#v:await"
+		>await</a
+		></code
+	      > with <code
+	      >draw</code
+	      ></p
+	    ><pre
+	    >(<code
+	      ><a href="Pipes.html#v:-62--126-"
+		>&gt;~</a
+		></code
+	      >) :: <code
+	      >Monad</code
+	      > m =&gt; <code
+	      ><a href="Pipes.html#t:Effect"
+		>Effect</a
+		></code
+	      >       m b -&gt; <code
+	      ><a href="Pipes.html#t:Consumer"
+		>Consumer</a
+		></code
+	      > b   m c -&gt; <code
+	      ><a href="Pipes.html#t:Effect"
+		>Effect</a
+		></code
+	      >       m c
+(<code
+	      ><a href="Pipes.html#v:-62--126-"
+		>&gt;~</a
+		></code
+	      >) :: <code
+	      >Monad</code
+	      > m =&gt; <code
+	      ><a href="Pipes.html#t:Consumer"
+		>Consumer</a
+		></code
+	      > a   m b -&gt; <code
+	      ><a href="Pipes.html#t:Consumer"
+		>Consumer</a
+		></code
+	      > b   m c -&gt; <code
+	      ><a href="Pipes.html#t:Consumer"
+		>Consumer</a
+		></code
+	      > a   m c
+(<code
+	      ><a href="Pipes.html#v:-62--126-"
+		>&gt;~</a
+		></code
+	      >) :: <code
+	      >Monad</code
+	      > m =&gt; <code
+	      ><a href="Pipes.html#t:Producer"
+		>Producer</a
+		></code
+	      >   y m b -&gt; <code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      >     b y m c -&gt; <code
+	      ><a href="Pipes.html#t:Producer"
+		>Producer</a
+		></code
+	      >   y m c
+(<code
+	      ><a href="Pipes.html#v:-62--126-"
+		>&gt;~</a
+		></code
+	      >) :: <code
+	      >Monad</code
+	      > m =&gt; <code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      >     a y m b -&gt; <code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      >     b y m c -&gt; <code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      >     a y m c
+</pre
+	    ><p
+	    >The following diagrams show the flow of information:</p
+	    ><pre
+	    >   +-----------+                 +-----------+                 +-------------+
+   |           |                 |           |                 |             |
+   |           |                 |           |                 |             |
+a ==&gt;    f    ==&gt; y   .---&gt;   b ==&gt;    g    ==&gt; y     =     a ==&gt;   f <code
+	      ><a href="Pipes.html#v:-62--126-"
+		>&gt;~</a
+		></code
+	      > g  ==&gt; y
+   |           |     /           |           |                 |             |
+   |     |     |    /            |     |     |                 |      |      |
+   +-----|-----+   /             +-----|-----+                 +------|------+
+         v        /                    v                              v
+         b   ----'                     c                              c
+</pre
+	    ><p
+	    >For a more complete diagram including bidirectional flow, see <a href="Pipes-Core.html#request-diagram"
+	      >Pipes.Core</a
+	      >.</p
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><a name="v:-126--60-" class="def"
+	    >(~&lt;)</a
+	    > <span class="fixity"
+	    >infixl 5</span
+	    ><span class="rightedge"
+	    ></span
+	    ></p
+	  ><div class="subs arguments"
+	  ><p class="caption"
+	    >Arguments</p
+	    ><table
+	    ><tr
+	      ><td class="src"
+		>:: Monad m</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>=&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > () b y' y m c</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>-&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > a' a y' y m b</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>-&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > a' a y' y m c</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ></table
+	    ></div
+	  ><div class="doc"
+	  ><p
+	    >(<code
+	      ><a href="Pipes.html#v:-62--126-"
+		>&gt;~</a
+		></code
+	      >) with the arguments flipped</p
+	    ></div
+	  ></div
+	><h2 id="g:4"
+	>Pipes</h2
+	><div class="doc"
+	><p
+	  >Use <code
+	    ><a href="Pipes.html#v:await"
+	      >await</a
+	      ></code
+	    > and <code
+	    ><a href="Pipes.html#v:yield"
+	      >yield</a
+	      ></code
+	    > to build <code
+	    ><a href="Pipes.html#t:Pipe"
+	      >Pipe</a
+	      ></code
+	    >s and (<code
+	    ><a href="Pipes.html#v:-62--45--62-"
+	      >&gt;-&gt;</a
+	      ></code
+	    >) to connect <code
+	    ><a href="Pipes.html#t:Pipe"
+	      >Pipe</a
+	      ></code
+	    >s.</p
+	  ><p
+	  ><code
+	    ><a href="Pipes.html#v:cat"
+	      >cat</a
+	      ></code
+	    > and (<code
+	    ><a href="Pipes.html#v:-62--45--62-"
+	      >&gt;-&gt;</a
+	      ></code
+	    >) obey the <code
+	    ><a href="Control-Category.html#v:Category"
+	      >Category</a
+	      ></code
+	    > laws:</p
+	  ><pre
+	  >-- Useless use of cat
+<code
+	    ><a href="Pipes.html#v:cat"
+	      >cat</a
+	      ></code
+	    > <code
+	    ><a href="Pipes.html#v:-62--45--62-"
+	      >&gt;-&gt;</a
+	      ></code
+	    > f = f
+
+-- Redirecting output to cat does nothing
+f <code
+	    ><a href="Pipes.html#v:-62--45--62-"
+	      >&gt;-&gt;</a
+	      ></code
+	    > <code
+	    ><a href="Pipes.html#v:cat"
+	      >cat</a
+	      ></code
+	    > = f
+
+-- The pipe operator is associative
+(f <code
+	    ><a href="Pipes.html#v:-62--45--62-"
+	      >&gt;-&gt;</a
+	      ></code
+	    > g) <code
+	    ><a href="Pipes.html#v:-62--45--62-"
+	      >&gt;-&gt;</a
+	      ></code
+	    > h = f <code
+	    ><a href="Pipes.html#v:-62--45--62-"
+	      >&gt;-&gt;</a
+	      ></code
+	    > (g <code
+	    ><a href="Pipes.html#v:-62--45--62-"
+	      >&gt;-&gt;</a
+	      ></code
+	    > h)
+</pre
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><span class="keyword"
+	    >type</span
+	    > <a name="t:Pipe" class="def"
+	    >Pipe</a
+	    > a b = <a href="Pipes.html#t:Proxy"
+	    >Proxy</a
+	    > () a () b</p
+	  ><div class="doc"
+	  ><p
+	    ><code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      >s can both <code
+	      ><a href="Pipes.html#v:await"
+		>await</a
+		></code
+	      > and <code
+	      ><a href="Pipes.html#v:yield"
+		>yield</a
+		></code
+	      ></p
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><a name="v:cat" class="def"
+	    >cat</a
+	    > :: Monad m =&gt; <a href="Pipes.html#t:Pipe"
+	    >Pipe</a
+	    > a a m r</p
+	  ><div class="doc"
+	  ><p
+	    >The identity <code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      >, analogous to the Unix <code
+	      >cat</code
+	      > program</p
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><a name="v:-62--45--62-" class="def"
+	    >(&gt;-&gt;)</a
+	    > <span class="fixity"
+	    >infixl 7</span
+	    ><span class="rightedge"
+	    ></span
+	    ></p
+	  ><div class="subs arguments"
+	  ><p class="caption"
+	    >Arguments</p
+	    ><table
+	    ><tr
+	      ><td class="src"
+		>:: Monad m</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>=&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > a' a () b m r</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>-&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > () b c' c m r</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>-&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > a' a c' c m r</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ></table
+	    ></div
+	  ><div class="doc"
+	  ><p
+	    ><code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      > composition, analogous to the Unix pipe operator</p
+	    ><pre
+	    >(<code
+	      ><a href="Pipes.html#v:-62--45--62-"
+		>&gt;-&gt;</a
+		></code
+	      >) :: <code
+	      >Monad</code
+	      > m =&gt; <code
+	      ><a href="Pipes.html#t:Producer"
+		>Producer</a
+		></code
+	      > b m r -&gt; <code
+	      ><a href="Pipes.html#t:Consumer"
+		>Consumer</a
+		></code
+	      > b   m r -&gt; <code
+	      ><a href="Pipes.html#t:Effect"
+		>Effect</a
+		></code
+	      >       m r
+(<code
+	      ><a href="Pipes.html#v:-62--45--62-"
+		>&gt;-&gt;</a
+		></code
+	      >) :: <code
+	      >Monad</code
+	      > m =&gt; <code
+	      ><a href="Pipes.html#t:Producer"
+		>Producer</a
+		></code
+	      > b m r -&gt; <code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      >     b c m r -&gt; <code
+	      ><a href="Pipes.html#t:Producer"
+		>Producer</a
+		></code
+	      >   c m r
+(<code
+	      ><a href="Pipes.html#v:-62--45--62-"
+		>&gt;-&gt;</a
+		></code
+	      >) :: <code
+	      >Monad</code
+	      > m =&gt; <code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      >   a b m r -&gt; <code
+	      ><a href="Pipes.html#t:Consumer"
+		>Consumer</a
+		></code
+	      > b   m r -&gt; <code
+	      ><a href="Pipes.html#t:Consumer"
+		>Consumer</a
+		></code
+	      > a   m r
+(<code
+	      ><a href="Pipes.html#v:-62--45--62-"
+		>&gt;-&gt;</a
+		></code
+	      >) :: <code
+	      >Monad</code
+	      > m =&gt; <code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      >   a b m r -&gt; <code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      >     b c m r -&gt; <code
+	      ><a href="Pipes.html#t:Pipe"
+		>Pipe</a
+		></code
+	      >     a c m r
+</pre
+	    ><p
+	    >The following diagrams show the flow of information:</p
+	    ><pre
+	    >   +-----------+     +-----------+                 +-------------+
+   |           |     |           |                 |             |
+   |           |     |           |                 |             |
+a ==&gt;    f    ==&gt; b ==&gt;    g    ==&gt; c     =     a ==&gt;  f <code
+	      ><a href="Pipes.html#v:-62--45--62-"
+		>&gt;-&gt;</a
+		></code
+	      > g  ==&gt; c
+   |           |     |           |                 |             |
+   |     |     |     |     |     |                 |      |      |
+   +-----|-----+     +-----|-----+                 +------|------+
+         v                 v                              v
+         r                 r                              r
+</pre
+	    ><p
+	    >For a more complete diagram including bidirectional flow, see <a href="Pipes-Core.html#pull-diagram"
+	      >Pipes.Core</a
+	      >.</p
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><a name="v:-60--45--60-" class="def"
+	    >(&lt;-&lt;)</a
+	    > <span class="fixity"
+	    >infixr 7</span
+	    ><span class="rightedge"
+	    ></span
+	    ></p
+	  ><div class="subs arguments"
+	  ><p class="caption"
+	    >Arguments</p
+	    ><table
+	    ><tr
+	      ><td class="src"
+		>:: Monad m</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>=&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > () b c' c m r</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>-&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > a' a () b m r</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td class="src"
+		>-&gt; <a href="Pipes.html#t:Proxy"
+		  >Proxy</a
+		  > a' a c' c m r</td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ></table
+	    ></div
+	  ><div class="doc"
+	  ><p
+	    >(<code
+	      ><a href="Pipes.html#v:-62--45--62-"
+		>&gt;-&gt;</a
+		></code
+	      >) with the arguments flipped</p
+	    ></div
+	  ></div
+	><h1 id="g:5"
+	>ListT</h1
+	><div class="top"
+	><p class="src"
+	  ><span class="keyword"
+	    >newtype</span
+	    > <a name="t:ListT" class="def"
+	    >ListT</a
+	    > m a</p
+	  ><div class="doc"
+	  ><p
+	    >The list monad transformer, which extends a monad with non-determinism</p
+	    ><p
+	    ><code
+	      >return</code
+	      > corresponds to <code
+	      ><a href="Pipes.html#v:yield"
+		>yield</a
+		></code
+	      >, yielding a single value</p
+	    ><p
+	    >(<code
+	      >&gt;&gt;=</code
+	      >) corresponds to <code
+	      ><a href="Pipes.html#v:for"
+		>for</a
+		></code
+	      >, calling the second computation once for each
+    time the first computation <code
+	      ><a href="Pipes.html#v:yield"
+		>yield</a
+		></code
+	      >s.</p
+	    ></div
+	  ><div class="subs constructors"
+	  ><p class="caption"
+	    >Constructors</p
+	    ><table
+	    ><tr
+	      ><td class="src"
+		><a name="v:Select" class="def"
+		  >Select</a
+		  ></td
+		><td class="doc empty"
+		>&nbsp;</td
+		></tr
+	      ><tr
+	      ><td colspan="2"
+		><div class="subs fields"
+		  ><p class="caption"
+		    >Fields</p
+		    ><dl
+		    ><dt class="src"
+		      ><a name="v:enumerate" class="def"
+			>enumerate</a
+			> :: <a href="Pipes.html#t:Producer"
+			>Producer</a
+			> a m ()</dt
+		      ><dd class="doc empty"
+		      >&nbsp;</dd
+		      ></dl
+		    ><div class="clear"
+		    ></div
+		    ></div
+		  ></td
+		></tr
+	      ></table
+	    ></div
+	  ><div class="subs instances"
+	  ><p id="control.i:ListT" class="caption collapser" onclick="toggleSection('i:ListT')"
+	    >Instances</p
+	    ><div id="section.i:ListT" class="show"
+	    ><table
+	      ><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >MonadTrans <a href="Pipes.html#t:ListT"
+		      >ListT</a
+		      ></span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >MFunctor <a href="Pipes.html#t:ListT"
+		      >ListT</a
+		      ></span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    ><a href="Pipes.html#t:Enumerable"
+		      >Enumerable</a
+		      > <a href="Pipes.html#t:ListT"
+		      >ListT</a
+		      ></span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >MonadError e m =&gt; MonadError e (<a href="Pipes.html#t:ListT"
+		      >ListT</a
+		      > m)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >MonadReader i m =&gt; MonadReader i (<a href="Pipes.html#t:ListT"
+		      >ListT</a
+		      > m)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >MonadState s m =&gt; MonadState s (<a href="Pipes.html#t:ListT"
+		      >ListT</a
+		      > m)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >MonadWriter w m =&gt; MonadWriter w (<a href="Pipes.html#t:ListT"
+		      >ListT</a
+		      > m)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >Monad m =&gt; Monad (<a href="Pipes.html#t:ListT"
+		      >ListT</a
+		      > m)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >Monad m =&gt; Functor (<a href="Pipes.html#t:ListT"
+		      >ListT</a
+		      > m)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >Monad m =&gt; Applicative (<a href="Pipes.html#t:ListT"
+		      >ListT</a
+		      > m)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >Monad m =&gt; MonadPlus (<a href="Pipes.html#t:ListT"
+		      >ListT</a
+		      > m)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >Monad m =&gt; Alternative (<a href="Pipes.html#t:ListT"
+		      >ListT</a
+		      > m)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >MonadIO m =&gt; MonadIO (<a href="Pipes.html#t:ListT"
+		      >ListT</a
+		      > m)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    >Monad m =&gt; Monoid (<a href="Pipes.html#t:ListT"
+		      >ListT</a
+		      > m a)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		></table
+	      ></div
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><a name="v:runListT" class="def"
+	    >runListT</a
+	    > :: Monad m =&gt; <a href="Pipes.html#t:ListT"
+	    >ListT</a
+	    > m a -&gt; m ()</p
+	  ><div class="doc"
+	  ><p
+	    >Run a self-contained <code
+	      ><a href="Pipes.html#t:ListT"
+		>ListT</a
+		></code
+	      > computation</p
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><span class="keyword"
+	    >class</span
+	    > <a name="t:Enumerable" class="def"
+	    >Enumerable</a
+	    > t <span class="keyword"
+	    >where</span
+	    ></p
+	  ><div class="doc"
+	  ><p
+	    ><code
+	      ><a href="Pipes.html#t:Enumerable"
+		>Enumerable</a
+		></code
+	      > generalizes <code
+	      >F.Foldable</code
+	      >, converting effectful
+    containers to <code
+	      ><a href="Pipes.html#t:ListT"
+		>ListT</a
+		></code
+	      >s.</p
+	    ><p
+	    >Instances of <code
+	      ><a href="Pipes.html#t:Enumerable"
+		>Enumerable</a
+		></code
+	      > must satisfy these two laws:</p
+	    ><pre
+	    >toListT (return r) = return r
+
+toListT $ do x &lt;- m  =  do x &lt;- toListT m
+             f x           toListT (f x)</pre
+	    ><p
+	    >In other words, <code
+	      ><a href="Pipes.html#v:toListT"
+		>toListT</a
+		></code
+	      > is monad morphism.</p
+	    ></div
+	  ><div class="subs methods"
+	  ><p class="caption"
+	    >Methods</p
+	    ><p class="src"
+	    ><a name="v:toListT" class="def"
+	      >toListT</a
+	      > :: Monad m =&gt; t m a -&gt; <a href="Pipes.html#t:ListT"
+	      >ListT</a
+	      > m a</p
+	    ></div
+	  ><div class="subs instances"
+	  ><p id="control.i:Enumerable" class="caption collapser" onclick="toggleSection('i:Enumerable')"
+	    >Instances</p
+	    ><div id="section.i:Enumerable" class="show"
+	    ><table
+	      ><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    ><a href="Pipes.html#t:Enumerable"
+		      >Enumerable</a
+		      > MaybeT</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    ><a href="Pipes.html#t:Enumerable"
+		      >Enumerable</a
+		      > IdentityT</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    ><a href="Pipes.html#t:Enumerable"
+		      >Enumerable</a
+		      > <a href="Pipes.html#t:ListT"
+		      >ListT</a
+		      ></span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		><tr
+		><td class="src clearfix"
+		  ><span class="inst-left"
+		    ><a href="Pipes.html#t:Enumerable"
+		      >Enumerable</a
+		      > (ErrorT e)</span
+		    ></td
+		  ><td class="doc empty"
+		  >&nbsp;</td
+		  ></tr
+		></table
+	      ></div
+	    ></div
+	  ></div
+	><h1 id="g:6"
+	>Utilities</h1
+	><div class="top"
+	><p class="src"
+	  ><a name="v:next" class="def"
+	    >next</a
+	    > :: Monad m =&gt; <a href="Pipes.html#t:Producer"
+	    >Producer</a
+	    > a m r -&gt; m (Either r (a, <a href="Pipes.html#t:Producer"
+	    >Producer</a
+	    > a m r))</p
+	  ><div class="doc"
+	  ><p
+	    >Consume the first value from a <code
+	      ><a href="Pipes.html#t:Producer"
+		>Producer</a
+		></code
+	      ></p
+	    ><p
+	    ><code
+	      ><a href="Pipes.html#v:next"
+		>next</a
+		></code
+	      > either fails with a <code
+	      >Left</code
+	      > if the <code
+	      ><a href="Pipes.html#t:Producer"
+		>Producer</a
+		></code
+	      > terminates or succeeds
+    with a <code
+	      >Right</code
+	      > providing the next value and the remainder of the <code
+	      ><a href="Pipes.html#t:Producer"
+		>Producer</a
+		></code
+	      >.</p
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><a name="v:each" class="def"
+	    >each</a
+	    > :: (Monad m, F.Foldable f) =&gt; f a -&gt; <a href="Pipes.html#t:Producer-39-"
+	    >Producer'</a
+	    > a m ()</p
+	  ><div class="doc"
+	  ><p
+	    >Convert a <code
+	      >F.Foldable</code
+	      > to a <code
+	      ><a href="Pipes.html#t:Producer"
+		>Producer</a
+		></code
+	      ></p
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><a name="v:every" class="def"
+	    >every</a
+	    > :: (Monad m, <a href="Pipes.html#t:Enumerable"
+	    >Enumerable</a
+	    > t) =&gt; t m a -&gt; <a href="Pipes.html#t:Producer-39-"
+	    >Producer'</a
+	    > a m ()</p
+	  ><div class="doc"
+	  ><p
+	    >Convert an <code
+	      ><a href="Pipes.html#t:Enumerable"
+		>Enumerable</a
+		></code
+	      > to a <code
+	      ><a href="Pipes.html#t:Producer"
+		>Producer</a
+		></code
+	      ></p
+	    ></div
+	  ></div
+	><div class="top"
+	><p class="src"
+	  ><a name="v:discard" class="def"
+	    >discard</a
+	    > :: Monad m =&gt; a -&gt; m ()</p
+	  ><div class="doc"
+	  ><p
+	    >Discards a value</p
+	    ></div
+	  ></div
+	><h1 id="g:7"
+	>Re-exports</h1
+	><div class="doc"
+	><p
+	  ><a href="Control-Monad.html"
+	    >Control.Monad</a
+	    > re-exports <code
+	    >void</code
+	    ></p
+	  ><p
+	  ><a href="Control-Monad-IO-Class.html"
+	    >Control.Monad.IO.Class</a
+	    > re-exports <code
+	    >MonadIO</code
+	    >.</p
+	  ><p
+	  ><a href="Control-Monad-Trans-Class.html"
+	    >Control.Monad.Trans.Class</a
+	    > re-exports <code
+	    >MonadTrans</code
+	    >.</p
+	  ><p
+	  ><a href="Control-Monad-Morph.html"
+	    >Control.Monad.Morph</a
+	    > re-exports <code
+	    >MFunctor</code
+	    >.</p
+	  ><p
+	  ><a href="Data-Foldable.html"
+	    >Data.Foldable</a
+	    > re-exports <code
+	    >F.Foldable</code
+	    > (the class name only).</p
+	  ></div
+	></div
+      ></div
+    ><div id="footer"
+    ><p
+      >Produced by <a href="http://www.haskell.org/haddock/"
+	>Haddock</a
+	> version 2.16.1</p
+      ></div
+    ></body
+  ></html
+>
