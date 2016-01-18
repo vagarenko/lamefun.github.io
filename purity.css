@@ -586,7 +586,6 @@ table.info {
 
 #synopsis {
   display: none;
-  clear: both;
 }
 
 .no-frame #synopsis {
@@ -601,7 +600,6 @@ table.info {
 /*----------------------------------------------------------------------------*/
 
 #interface {
-  clear: both;
 }
 
 #interface div.top {
@@ -969,7 +967,6 @@ table.info {
   #content.has-sidebar {
     width: 1070px;
     position: relative;
-    padding-right: 370px;
   }
 
   #content {
@@ -980,9 +977,10 @@ table.info {
     background: #f6f6f6;
     padding: 15px;
     width: 300px;
-    position: absolute;
-    right: 0;
-    top: 0;
+    float: right;
+    position: relative;
+    top: -58px;
+    margin-left: 40px;
   }
 
   #sidebar h1 {
