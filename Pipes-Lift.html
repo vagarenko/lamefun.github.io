@@ -17,9 +17,13 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 </script
     ></head
   ><body
-  ><div id="package-header"
+  ><div class="section" id="package-header"
     ><ul class="links" id="page-menu"
       ><li
+	><a href="src/Pipes.Lift.html"
+	  >Source</a
+	  ></li
+	><li
 	><a href="index.html"
 	  >Contents</a
 	  ></li
@@ -35,7 +39,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
     ><h1 class="module-name"
       >Pipes.Lift</h1
       ><div id="sidebar"
-      ><div id="module-info"
+      ><div class="section" id="module-info"
 	><p class="caption"
 	  >Information</p
 	  ><table class="info"
@@ -47,7 +51,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	      ></tr
 	    ></table
 	  ></div
-	><div id="table-of-contents"
+	><div class="section" id="table-of-contents"
 	><p class="caption"
 	  >Contents</p
 	  ><ul
@@ -86,10 +90,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	    ></ul
 	  ></div
 	></div
-      ><div id="description"
+      ><div class="section" id="description"
       ><p class="caption"
 	>Description</p
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >Many actions in base monad transformers cannot be automatically
     <code
@@ -105,7 +109,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
     typical use cases where this module will come in handy.</p
 	  ></div
 	></div
-      ><div id="synopsis"
+      ><div class="section" id="synopsis"
       ><p id="control.syn" class="caption expander" onclick="toggleSection('syn')"
 	>Synopsis</p
 	><ul id="section.syn" class="hide" onclick="toggleSection('syn')"
@@ -283,13 +287,15 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	    > a' a b' b m (s, w)</li
 	  ></ul
 	></div
-      ><div id="interface"
+      ><div class="section" id="interface"
       ><h1 id="g:1"
 	>Utilities</h1
 	><div class="top"
 	><p class="src"
 	  ><a name="v:distribute" class="def"
 	    >distribute</a
+	    > <a href="src/Pipes.Lift.html#distribute" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -321,7 +327,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Distribute <code
 	      ><a href="Pipes-Internal.html#t:Proxy"
@@ -340,8 +346,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	    >Proxy</a
 	    > a' a b' b m (Either e r) -&gt; <a href="Pipes-Internal.html#t:Proxy"
 	    >Proxy</a
-	    > a' a b' b (E.ErrorT e m) r</p
-	  ><div class="doc"
+	    > a' a b' b (E.ErrorT e m) r <a href="src/Pipes.Lift.html#errorP" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Wrap the base monad in <code
 	      >E.ErrorT</code
@@ -356,8 +364,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	    >Proxy</a
 	    > a' a b' b (E.ErrorT e m) r -&gt; <a href="Pipes-Internal.html#t:Proxy"
 	    >Proxy</a
-	    > a' a b' b m (Either e r)</p
-	  ><div class="doc"
+	    > a' a b' b m (Either e r) <a href="src/Pipes.Lift.html#runErrorP" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Run <code
 	      >E.ErrorT</code
@@ -368,6 +378,8 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	><p class="src"
 	  ><a name="v:catchError" class="def"
 	    >catchError</a
+	    > <a href="src/Pipes.Lift.html#catchError" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -405,7 +417,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Catch an error in the base monad</p
 	    ></div
@@ -414,6 +426,8 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	><p class="src"
 	  ><a name="v:liftCatchError" class="def"
 	    >liftCatchError</a
+	    > <a href="src/Pipes.Lift.html#liftCatchError" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -451,7 +465,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Catch an error using a catch function for the base monad</p
 	    ></div
@@ -466,8 +480,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	    >Proxy</a
 	    > a' a b' b m (Maybe r) -&gt; <a href="Pipes-Internal.html#t:Proxy"
 	    >Proxy</a
-	    > a' a b' b (M.MaybeT m) r</p
-	  ><div class="doc"
+	    > a' a b' b (M.MaybeT m) r <a href="src/Pipes.Lift.html#maybeP" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Wrap the base monad in <code
 	      >M.MaybeT</code
@@ -482,8 +498,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	    >Proxy</a
 	    > a' a b' b (M.MaybeT m) r -&gt; <a href="Pipes-Internal.html#t:Proxy"
 	    >Proxy</a
-	    > a' a b' b m (Maybe r)</p
-	  ><div class="doc"
+	    > a' a b' b m (Maybe r) <a href="src/Pipes.Lift.html#runMaybeP" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Run <code
 	      >M.MaybeT</code
@@ -500,8 +518,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	    >Proxy</a
 	    > a' a b' b m r) -&gt; <a href="Pipes-Internal.html#t:Proxy"
 	    >Proxy</a
-	    > a' a b' b (R.ReaderT i m) r</p
-	  ><div class="doc"
+	    > a' a b' b (R.ReaderT i m) r <a href="src/Pipes.Lift.html#readerP" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Wrap the base monad in <code
 	      >R.ReaderT</code
@@ -516,8 +536,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	    >Proxy</a
 	    > a' a b' b (R.ReaderT i m) r -&gt; <a href="Pipes-Internal.html#t:Proxy"
 	    >Proxy</a
-	    > a' a b' b m r</p
-	  ><div class="doc"
+	    > a' a b' b m r <a href="src/Pipes.Lift.html#runReaderP" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Run <code
 	      >R.ReaderT</code
@@ -534,8 +556,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	    >Proxy</a
 	    > a' a b' b m (r, s)) -&gt; <a href="Pipes-Internal.html#t:Proxy"
 	    >Proxy</a
-	    > a' a b' b (S.StateT s m) r</p
-	  ><div class="doc"
+	    > a' a b' b (S.StateT s m) r <a href="src/Pipes.Lift.html#stateP" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Wrap the base monad in <code
 	      >S.StateT</code
@@ -550,8 +574,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	    >Proxy</a
 	    > a' a b' b (S.StateT s m) r -&gt; <a href="Pipes-Internal.html#t:Proxy"
 	    >Proxy</a
-	    > a' a b' b m (r, s)</p
-	  ><div class="doc"
+	    > a' a b' b m (r, s) <a href="src/Pipes.Lift.html#runStateP" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Run <code
 	      >S.StateT</code
@@ -566,8 +592,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	    >Proxy</a
 	    > a' a b' b (S.StateT s m) r -&gt; <a href="Pipes-Internal.html#t:Proxy"
 	    >Proxy</a
-	    > a' a b' b m r</p
-	  ><div class="doc"
+	    > a' a b' b m r <a href="src/Pipes.Lift.html#evalStateP" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Evaluate <code
 	      >S.StateT</code
@@ -582,8 +610,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	    >Proxy</a
 	    > a' a b' b (S.StateT s m) r -&gt; <a href="Pipes-Internal.html#t:Proxy"
 	    >Proxy</a
-	    > a' a b' b m s</p
-	  ><div class="doc"
+	    > a' a b' b m s <a href="src/Pipes.Lift.html#execStateP" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Execute <code
 	      >S.StateT</code
@@ -592,7 +622,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	  ></div
 	><h1 id="g:6"
 	>WriterT</h1
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >Note that <code
 	    ><a href="Pipes-Lift.html#v:runWriterP"
@@ -637,8 +667,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	    >Proxy</a
 	    > a' a b' b m (r, w) -&gt; <a href="Pipes-Internal.html#t:Proxy"
 	    >Proxy</a
-	    > a' a b' b (W.WriterT w m) r</p
-	  ><div class="doc"
+	    > a' a b' b (W.WriterT w m) r <a href="src/Pipes.Lift.html#writerP" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Wrap the base monad in <code
 	      >W.WriterT</code
@@ -653,8 +685,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	    >Proxy</a
 	    > a' a b' b (W.WriterT w m) r -&gt; <a href="Pipes-Internal.html#t:Proxy"
 	    >Proxy</a
-	    > a' a b' b m (r, w)</p
-	  ><div class="doc"
+	    > a' a b' b m (r, w) <a href="src/Pipes.Lift.html#runWriterP" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Run <code
 	      >W.WriterT</code
@@ -669,8 +703,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	    >Proxy</a
 	    > a' a b' b (W.WriterT w m) r -&gt; <a href="Pipes-Internal.html#t:Proxy"
 	    >Proxy</a
-	    > a' a b' b m w</p
-	  ><div class="doc"
+	    > a' a b' b m w <a href="src/Pipes.Lift.html#execWriterP" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Execute <code
 	      >W.WriterT</code
@@ -687,8 +723,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	    >Proxy</a
 	    > a' a b' b m (r, s, w)) -&gt; <a href="Pipes-Internal.html#t:Proxy"
 	    >Proxy</a
-	    > a' a b' b (RWS.RWST i w s m) r</p
-	  ><div class="doc"
+	    > a' a b' b (RWS.RWST i w s m) r <a href="src/Pipes.Lift.html#rwsP" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Wrap the base monad in <code
 	      >RWS.RWST</code
@@ -703,8 +741,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	    >Proxy</a
 	    > a' a b' b (RWS.RWST r w s m) d -&gt; <a href="Pipes-Internal.html#t:Proxy"
 	    >Proxy</a
-	    > a' a b' b m (d, s, w)</p
-	  ><div class="doc"
+	    > a' a b' b m (d, s, w) <a href="src/Pipes.Lift.html#runRWSP" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Run <code
 	      >RWS.RWST</code
@@ -719,8 +759,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	    >Proxy</a
 	    > a' a b' b (RWS.RWST r w s m) d -&gt; <a href="Pipes-Internal.html#t:Proxy"
 	    >Proxy</a
-	    > a' a b' b m (d, w)</p
-	  ><div class="doc"
+	    > a' a b' b m (d, w) <a href="src/Pipes.Lift.html#evalRWSP" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Evaluate <code
 	      >RWS.RWST</code
@@ -735,8 +777,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	    >Proxy</a
 	    > a' a b' b (RWS.RWST r w s m) d -&gt; <a href="Pipes-Internal.html#t:Proxy"
 	    >Proxy</a
-	    > a' a b' b m (s, w)</p
-	  ><div class="doc"
+	    > a' a b' b m (s, w) <a href="src/Pipes.Lift.html#execRWSP" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Execute <code
 	      >RWS.RWST</code
@@ -745,7 +789,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Lift.html");};
 	  ></div
 	><h1 id="g:8"
 	>Tutorial</h1
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >Probably the most useful functionality in this module is lifted error
     handling.  Suppose that you have a <code
@@ -922,7 +966,7 @@ naturals = evalStateP 0 numbers</pre
 	  ></div
 	></div
       ></div
-    ><div id="footer"
+    ><div class="section" id="footer"
     ><p
       >Produced by <a href="http://www.haskell.org/haddock/"
 	>Haddock</a

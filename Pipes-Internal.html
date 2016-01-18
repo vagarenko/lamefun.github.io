@@ -17,9 +17,13 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Internal.html");
 </script
     ></head
   ><body
-  ><div id="package-header"
+  ><div class="section" id="package-header"
     ><ul class="links" id="page-menu"
       ><li
+	><a href="src/Pipes.Internal.html"
+	  >Source</a
+	  ></li
+	><li
 	><a href="index.html"
 	  >Contents</a
 	  ></li
@@ -35,7 +39,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Internal.html");
     ><h1 class="module-name"
       >Pipes.Internal</h1
       ><div id="sidebar"
-      ><div id="module-info"
+      ><div class="section" id="module-info"
 	><p class="caption"
 	  >Information</p
 	  ><table class="info"
@@ -47,7 +51,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Internal.html");
 	      ></tr
 	    ></table
 	  ></div
-	><div id="table-of-contents"
+	><div class="section" id="table-of-contents"
 	><p class="caption"
 	  >Contents</p
 	  ><ul
@@ -58,10 +62,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Internal.html");
 	    ></ul
 	  ></div
 	></div
-      ><div id="description"
+      ><div class="section" id="description"
       ><p class="caption"
 	>Description</p
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >This is an internal module, meaning that it is unsafe to import unless you
     understand the risks.</p
@@ -116,7 +120,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Internal.html");
     any functions which can violate the monad transformer laws.</p
 	  ></div
 	></div
-      ><div id="synopsis"
+      ><div class="section" id="synopsis"
       ><p id="control.syn" class="caption expander" onclick="toggleSection('syn')"
 	>Synopsis</p
 	><ul id="section.syn" class="hide" onclick="toggleSection('syn')"
@@ -182,7 +186,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Internal.html");
 	    > -&gt; a</li
 	  ></ul
 	></div
-      ><div id="interface"
+      ><div class="section" id="interface"
       ><h1 id="g:1"
 	>Internal</h1
 	><div class="top"
@@ -191,8 +195,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Internal.html");
 	    >data</span
 	    > <a name="t:Proxy" class="def"
 	    >Proxy</a
-	    > a' a b' b m r</p
-	  ><div class="doc"
+	    > a' a b' b m r <a href="src/Pipes.Internal.html#Proxy" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >A <code
 	      ><a href="Pipes-Internal.html#t:Proxy"
@@ -438,8 +444,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Internal.html");
 	    >Proxy</a
 	    > a' a b' b m r -&gt; <a href="Pipes-Internal.html#t:Proxy"
 	    >Proxy</a
-	    > a' a b' b n r</p
-	  ><div class="doc"
+	    > a' a b' b n r <a href="src/Pipes.Internal.html#unsafeHoist" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    ><code
 	      ><a href="Pipes-Internal.html#v:unsafeHoist"
@@ -462,8 +470,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Internal.html");
 	    >Proxy</a
 	    > a' a b' b m r -&gt; <a href="Pipes-Internal.html#t:Proxy"
 	    >Proxy</a
-	    > a' a b' b m r</p
-	  ><div class="doc"
+	    > a' a b' b m r <a href="src/Pipes.Internal.html#observe" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >The monad transformer laws are correct when viewed through the <code
 	      ><a href="Pipes-Internal.html#v:observe"
@@ -530,8 +540,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Internal.html");
 	    >data</span
 	    > <a name="t:X" class="def"
 	    >X</a
+	    > <a href="src/Pipes.Internal.html#X" class="link"
+	    >Source</a
 	    ></p
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >The empty type, used to close output ends</p
 	    ><p
@@ -550,8 +562,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Internal.html");
 	    >closed</a
 	    > :: <a href="Pipes-Internal.html#t:X"
 	    >X</a
-	    > -&gt; a</p
-	  ><div class="doc"
+	    > -&gt; a <a href="src/Pipes.Internal.html#closed" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Use <code
 	      ><a href="Pipes-Internal.html#v:closed"
@@ -562,7 +576,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Internal.html");
 	  ></div
 	></div
       ></div
-    ><div id="footer"
+    ><div class="section" id="footer"
     ><p
       >Produced by <a href="http://www.haskell.org/haddock/"
 	>Haddock</a

@@ -17,9 +17,13 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Core.html");};
 </script
     ></head
   ><body
-  ><div id="package-header"
+  ><div class="section" id="package-header"
     ><ul class="links" id="page-menu"
       ><li
+	><a href="src/Pipes.Core.html"
+	  >Source</a
+	  ></li
+	><li
 	><a href="index.html"
 	  >Contents</a
 	  ></li
@@ -35,7 +39,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Core.html");};
     ><h1 class="module-name"
       >Pipes.Core</h1
       ><div id="sidebar"
-      ><div id="module-info"
+      ><div class="section" id="module-info"
 	><p class="caption"
 	  >Information</p
 	  ><table class="info"
@@ -47,7 +51,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Core.html");};
 	      ></tr
 	    ></table
 	  ></div
-	><div id="table-of-contents"
+	><div class="section" id="table-of-contents"
 	><p class="caption"
 	  >Contents</p
 	  ><ul
@@ -100,10 +104,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Core.html");};
 	    ></ul
 	  ></div
 	></div
-      ><div id="description"
+      ><div class="section" id="description"
       ><p class="caption"
 	>Description</p
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >The core functionality for the <code
 	    ><a href="Pipes-Core.html#t:Proxy"
@@ -134,7 +138,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Core.html");};
 	    ></ul
 	  ></div
 	></div
-      ><div id="synopsis"
+      ><div class="section" id="synopsis"
       ><p id="control.syn" class="caption expander" onclick="toggleSection('syn')"
 	>Synopsis</p
 	><ul id="section.syn" class="hide" onclick="toggleSection('syn')"
@@ -466,10 +470,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Core.html");};
 	    > -&gt; a</li
 	  ></ul
 	></div
-      ><div id="interface"
+      ><div class="section" id="interface"
       ><h1 id="g:1"
 	>Proxy Monad Transformer</h1
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >Diagrammatically, you can think of a <code
 	    ><a href="Pipes-Core.html#t:Proxy"
@@ -529,8 +533,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Core.html");};
 	    >data</span
 	    > <a name="t:Proxy" class="def"
 	    >Proxy</a
-	    > a' a b' b m r</p
-	  ><div class="doc"
+	    > a' a b' b m r <a href="src/Pipes.Internal.html#Proxy" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >A <code
 	      ><a href="Pipes-Core.html#t:Proxy"
@@ -728,8 +734,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Core.html");};
 	    >runEffect</a
 	    > :: Monad m =&gt; <a href="Pipes-Core.html#t:Effect"
 	    >Effect</a
-	    > m r -&gt; m r</p
-	  ><div class="doc"
+	    > m r -&gt; m r <a href="src/Pipes.Core.html#runEffect" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Run a self-contained <code
 	      ><a href="Pipes-Core.html#t:Effect"
@@ -740,7 +748,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Core.html");};
 	  ></div
 	><h1 id="g:2"
 	>Categories</h1
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >A <code
 	    ><a href="Control-Category.html#v:Category"
@@ -907,7 +915,7 @@ f <code
 	  ></div
 	><h2 id="g:3"
 	>Respond</h2
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >The <code
 	    ><a href="Pipes-Core.html#v:respond"
@@ -1088,8 +1096,10 @@ f <code
 	    >respond</a
 	    > :: Monad m =&gt; a -&gt; <a href="Pipes-Core.html#t:Proxy"
 	    >Proxy</a
-	    > x' x a' a m a'</p
-	  ><div class="doc"
+	    > x' x a' a m a' <a href="src/Pipes.Core.html#respond" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Send a value of type <code
 	      >a</code
@@ -1113,6 +1123,8 @@ f <code
 	    >infixr 4</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.Core.html#%2F%3E%2F" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -1150,7 +1162,7 @@ f <code
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Compose two unfolds, creating a new unfold</p
 	    ><pre
@@ -1180,6 +1192,8 @@ f <code
 	    >infixl 3</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.Core.html#%2F%2F%3E" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -1217,7 +1231,7 @@ f <code
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    ><code
 	      >(p //&gt; f)</code
@@ -1240,7 +1254,7 @@ f <code
 	  ></div
 	><h2 id="g:4"
 	>Request</h2
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >The <code
 	    ><a href="Pipes-Core.html#v:request"
@@ -1407,8 +1421,10 @@ f <code
 	    >request</a
 	    > :: Monad m =&gt; a' -&gt; <a href="Pipes-Core.html#t:Proxy"
 	    >Proxy</a
-	    > a' a y' y m a</p
-	  ><div class="doc"
+	    > a' a y' y m a <a href="src/Pipes.Core.html#request" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Send a value of type <code
 	      >a'</code
@@ -1431,6 +1447,8 @@ f <code
 	    >infixl 5</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.Core.html#%5C%3E%5C" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -1468,7 +1486,7 @@ f <code
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Compose two folds, creating a new fold</p
 	    ><pre
@@ -1498,6 +1516,8 @@ f <code
 	    >infixr 4</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.Core.html#%3E%5C%5C" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -1535,7 +1555,7 @@ f <code
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    ><code
 	      >(f &gt;\\ p)</code
@@ -1558,7 +1578,7 @@ f <code
 	  ></div
 	><h2 id="g:5"
 	>Push</h2
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >The <code
 	    ><a href="Pipes-Core.html#v:push"
@@ -1696,8 +1716,10 @@ f <code
 	    >push</a
 	    > :: Monad m =&gt; a -&gt; <a href="Pipes-Core.html#t:Proxy"
 	    >Proxy</a
-	    > a' a a' a m r</p
-	  ><div class="doc"
+	    > a' a a' a m r <a href="src/Pipes.Core.html#push" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Forward responses followed by requests</p
 	    ><pre
@@ -1743,6 +1765,8 @@ f <code
 	    >infixr 8</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.Core.html#%3E~%3E" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -1780,7 +1804,7 @@ f <code
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Compose two proxies blocked while <code
 	      ><a href="Pipes-Core.html#v:request"
@@ -1819,6 +1843,8 @@ f <code
 	    >infixl 7</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.Core.html#%3E%3E~" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -1856,7 +1882,7 @@ f <code
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    ><code
 	      >(p &gt;&gt;~ f)</code
@@ -1883,7 +1909,7 @@ f <code
 	  ></div
 	><h2 id="g:6"
 	>Pull</h2
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >The <code
 	    ><a href="Pipes-Core.html#v:pull"
@@ -2021,8 +2047,10 @@ f <code
 	    >pull</a
 	    > :: Monad m =&gt; a' -&gt; <a href="Pipes-Core.html#t:Proxy"
 	    >Proxy</a
-	    > a' a a' a m r</p
-	  ><div class="doc"
+	    > a' a a' a m r <a href="src/Pipes.Core.html#pull" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Forward requests followed by responses:</p
 	    ><pre
@@ -2068,6 +2096,8 @@ f <code
 	    >infixl 7</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.Core.html#%3E%2B%3E" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -2105,7 +2135,7 @@ f <code
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Compose two proxies blocked in the middle of <code
 	      ><a href="Pipes-Core.html#v:respond"
@@ -2144,6 +2174,8 @@ f <code
 	    >infixr 6</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.Core.html#%2B%3E%3E" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -2181,7 +2213,7 @@ f <code
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    ><code
 	      >(f +&gt;&gt; p)</code
@@ -2208,7 +2240,7 @@ f <code
 	  ></div
 	><h2 id="g:7"
 	>Reflect</h2
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  ><code
 	    >(reflect .)</code
@@ -2410,8 +2442,10 @@ f <code
 	    >Proxy</a
 	    > a' a b' b m r -&gt; <a href="Pipes-Core.html#t:Proxy"
 	    >Proxy</a
-	    > b b' a a' m r</p
-	  ><div class="doc"
+	    > b b' a a' m r <a href="src/Pipes.Core.html#reflect" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Switch the upstream and downstream ends</p
 	    ></div
@@ -2424,8 +2458,10 @@ f <code
 	    >data</span
 	    > <a name="t:X" class="def"
 	    >X</a
+	    > <a href="src/Pipes.Internal.html#X" class="link"
+	    >Source</a
 	    ></p
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >The empty type, used to close output ends</p
 	    ><p
@@ -2450,8 +2486,10 @@ f <code
 	    >X</a
 	    > () () <a href="Pipes-Core.html#t:X"
 	    >X</a
+	    > <a href="src/Pipes.Core.html#Effect" class="link"
+	    >Source</a
 	    ></p
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >An effect in the base monad</p
 	    ><p
@@ -2480,8 +2518,10 @@ f <code
 	    >Proxy</a
 	    > <a href="Pipes-Core.html#t:X"
 	    >X</a
-	    > () () b</p
-	  ><div class="doc"
+	    > () () b <a href="src/Pipes.Core.html#Producer" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    ><code
 	      ><a href="Pipes-Core.html#t:Producer"
@@ -2502,8 +2542,10 @@ f <code
 	    >Pipe</a
 	    > a b = <a href="Pipes-Core.html#t:Proxy"
 	    >Proxy</a
-	    > () a () b</p
-	  ><div class="doc"
+	    > () a () b <a href="src/Pipes.Core.html#Pipe" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    ><code
 	      ><a href="Pipes-Core.html#t:Pipe"
@@ -2530,8 +2572,10 @@ f <code
 	    >Proxy</a
 	    > () a () <a href="Pipes-Core.html#t:X"
 	    >X</a
+	    > <a href="src/Pipes.Core.html#Consumer" class="link"
+	    >Source</a
 	    ></p
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    ><code
 	      ><a href="Pipes-Core.html#t:Consumer"
@@ -2554,8 +2598,10 @@ f <code
 	    >Proxy</a
 	    > a' a () <a href="Pipes-Core.html#t:X"
 	    >X</a
+	    > <a href="src/Pipes.Core.html#Client" class="link"
+	    >Source</a
 	    ></p
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    ><code
 	      >Client a' a</code
@@ -2591,8 +2637,10 @@ f <code
 	    >Proxy</a
 	    > <a href="Pipes-Core.html#t:X"
 	    >X</a
-	    > () b' b</p
-	  ><div class="doc"
+	    > () b' b <a href="src/Pipes.Core.html#Server" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    ><code
 	      >Server b' b</code
@@ -2630,8 +2678,10 @@ f <code
 	    >forall</span
 	    > x' x y' y. <a href="Pipes-Core.html#t:Proxy"
 	    >Proxy</a
-	    > x' x y' y m r</p
-	  ><div class="doc"
+	    > x' x y' y m r <a href="src/Pipes.Core.html#Effect%27" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Like <code
 	      ><a href="Pipes-Core.html#t:Effect"
@@ -2650,8 +2700,10 @@ f <code
 	    >forall</span
 	    > x' x. <a href="Pipes-Core.html#t:Proxy"
 	    >Proxy</a
-	    > x' x () b m r</p
-	  ><div class="doc"
+	    > x' x () b m r <a href="src/Pipes.Core.html#Producer%27" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Like <code
 	      ><a href="Pipes-Core.html#t:Producer"
@@ -2670,8 +2722,10 @@ f <code
 	    >forall</span
 	    > y' y. <a href="Pipes-Core.html#t:Proxy"
 	    >Proxy</a
-	    > () a y' y m r</p
-	  ><div class="doc"
+	    > () a y' y m r <a href="src/Pipes.Core.html#Consumer%27" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Like <code
 	      ><a href="Pipes-Core.html#t:Consumer"
@@ -2690,8 +2744,10 @@ f <code
 	    >forall</span
 	    > y' y. <a href="Pipes-Core.html#t:Proxy"
 	    >Proxy</a
-	    > a' a y' y m r</p
-	  ><div class="doc"
+	    > a' a y' y m r <a href="src/Pipes.Core.html#Client%27" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Like <code
 	      ><a href="Pipes-Core.html#t:Client"
@@ -2710,8 +2766,10 @@ f <code
 	    >forall</span
 	    > x' x. <a href="Pipes-Core.html#t:Proxy"
 	    >Proxy</a
-	    > x' x b' b m r</p
-	  ><div class="doc"
+	    > x' x b' b m r <a href="src/Pipes.Core.html#Server%27" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Like <code
 	      ><a href="Pipes-Core.html#t:Server"
@@ -2730,6 +2788,8 @@ f <code
 	    >infixl 4</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.Core.html#%5C%3C%5C" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -2767,7 +2827,7 @@ f <code
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Equivalent to (<code
 	      ><a href="Pipes-Core.html#v:-47--62--47-"
@@ -2784,6 +2844,8 @@ f <code
 	    >infixr 5</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.Core.html#%2F%3C%2F" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -2821,7 +2883,7 @@ f <code
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Equivalent to (<code
 	      ><a href="Pipes-Core.html#v:-92--62--92-"
@@ -2838,6 +2900,8 @@ f <code
 	    >infixl 8</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.Core.html#%3C~%3C" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -2875,7 +2939,7 @@ f <code
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Equivalent to (<code
 	      ><a href="Pipes-Core.html#v:-62--126--62-"
@@ -2892,6 +2956,8 @@ f <code
 	    >infixr 7</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.Core.html#~%3C%3C" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -2929,7 +2995,7 @@ f <code
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Equivalent to (<code
 	      ><a href="Pipes-Core.html#v:-62--62--126-"
@@ -2946,6 +3012,8 @@ f <code
 	    >infixr 7</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.Core.html#%3C%2B%3C" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -2983,7 +3051,7 @@ f <code
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Equivalent to (<code
 	      ><a href="Pipes-Core.html#v:-62--43--62-"
@@ -3000,6 +3068,8 @@ f <code
 	    >infixr 3</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.Core.html#%3C%5C%5C" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -3037,7 +3107,7 @@ f <code
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Equivalent to (<code
 	      ><a href="Pipes-Core.html#v:-47--47--62-"
@@ -3054,6 +3124,8 @@ f <code
 	    >infixl 4</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.Core.html#%2F%2F%3C" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -3091,7 +3163,7 @@ f <code
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Equivalent to (<code
 	      ><a href="Pipes-Core.html#v:-62--92--92-"
@@ -3108,6 +3180,8 @@ f <code
 	    >infixl 6</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.Core.html#%3C%3C%2B" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -3145,7 +3219,7 @@ f <code
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Equivalent to (<code
 	      ><a href="Pipes-Core.html#v:-43--62--62-"
@@ -3162,8 +3236,10 @@ f <code
 	    >closed</a
 	    > :: <a href="Pipes-Core.html#t:X"
 	    >X</a
-	    > -&gt; a</p
-	  ><div class="doc"
+	    > -&gt; a <a href="src/Pipes.Internal.html#closed" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Use <code
 	      ><a href="Pipes-Core.html#v:closed"
@@ -3174,7 +3250,7 @@ f <code
 	  ></div
 	></div
       ></div
-    ><div id="footer"
+    ><div class="section" id="footer"
     ><p
       >Produced by <a href="http://www.haskell.org/haddock/"
 	>Haddock</a

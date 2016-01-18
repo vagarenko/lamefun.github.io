@@ -17,9 +17,13 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes.html");};
 </script
     ></head
   ><body
-  ><div id="package-header"
+  ><div class="section" id="package-header"
     ><ul class="links" id="page-menu"
       ><li
+	><a href="src/Pipes.html"
+	  >Source</a
+	  ></li
+	><li
 	><a href="index.html"
 	  >Contents</a
 	  ></li
@@ -35,7 +39,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes.html");};
     ><h1 class="module-name"
       >Pipes</h1
       ><div id="sidebar"
-      ><div id="module-info"
+      ><div class="section" id="module-info"
 	><p class="caption"
 	  >Information</p
 	  ><table class="info"
@@ -78,7 +82,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes.html");};
 	      ></tr
 	    ></table
 	  ></div
-	><div id="table-of-contents"
+	><div class="section" id="table-of-contents"
 	><p class="caption"
 	  >Contents</p
 	  ><ul
@@ -115,10 +119,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes.html");};
 	    ></ul
 	  ></div
 	></div
-      ><div id="description"
+      ><div class="section" id="description"
       ><p class="caption"
 	>Description</p
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >This module is the recommended entry point to the <code
 	    >pipes</code
@@ -130,7 +134,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes.html");};
     library.</p
 	  ></div
 	></div
-      ><div id="synopsis"
+      ><div class="section" id="synopsis"
       ><p id="control.syn" class="caption expander" onclick="toggleSection('syn')"
 	>Synopsis</p
 	><ul id="section.syn" class="hide" onclick="toggleSection('syn')"
@@ -376,7 +380,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes.html");};
 	    > :: Monad m =&gt; a -&gt; m ()</li
 	  ></ul
 	></div
-      ><div id="interface"
+      ><div class="section" id="interface"
       ><h1 id="g:1"
 	>The Proxy Monad Transformer</h1
 	><div class="top"
@@ -385,8 +389,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes.html");};
 	    >data</span
 	    > <a name="t:Proxy" class="def"
 	    >Proxy</a
-	    > a' a b' b m r</p
-	  ><div class="doc"
+	    > a' a b' b m r <a href="src/Pipes.Internal.html#Proxy" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >A <code
 	      ><a href="Pipes.html#t:Proxy"
@@ -584,8 +590,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes.html");};
 	    >data</span
 	    > <a name="t:X" class="def"
 	    >X</a
+	    > <a href="src/Pipes.Internal.html#X" class="link"
+	    >Source</a
 	    ></p
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >The empty type, used to close output ends</p
 	    ><p
@@ -610,8 +618,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes.html");};
 	    >X</a
 	    > () () <a href="Pipes.html#t:X"
 	    >X</a
+	    > <a href="src/Pipes.Core.html#Effect" class="link"
+	    >Source</a
 	    ></p
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >An effect in the base monad</p
 	    ><p
@@ -640,8 +650,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes.html");};
 	    >forall</span
 	    > x' x y' y. <a href="Pipes.html#t:Proxy"
 	    >Proxy</a
-	    > x' x y' y m r</p
-	  ><div class="doc"
+	    > x' x y' y m r <a href="src/Pipes.Core.html#Effect%27" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Like <code
 	      ><a href="Pipes.html#t:Effect"
@@ -656,8 +668,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes.html");};
 	    >runEffect</a
 	    > :: Monad m =&gt; <a href="Pipes.html#t:Effect"
 	    >Effect</a
-	    > m r -&gt; m r</p
-	  ><div class="doc"
+	    > m r -&gt; m r <a href="src/Pipes.Core.html#runEffect" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Run a self-contained <code
 	      ><a href="Pipes.html#t:Effect"
@@ -668,7 +682,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes.html");};
 	  ></div
 	><h2 id="g:2"
 	>Producers</h2
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >Use <code
 	    ><a href="Pipes.html#v:yield"
@@ -811,8 +825,10 @@ f <code
 	    >Proxy</a
 	    > <a href="Pipes.html#t:X"
 	    >X</a
-	    > () () b</p
-	  ><div class="doc"
+	    > () () b <a href="src/Pipes.Core.html#Producer" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    ><code
 	      ><a href="Pipes.html#t:Producer"
@@ -835,8 +851,10 @@ f <code
 	    >forall</span
 	    > x' x. <a href="Pipes.html#t:Proxy"
 	    >Proxy</a
-	    > x' x () b m r</p
-	  ><div class="doc"
+	    > x' x () b m r <a href="src/Pipes.Core.html#Producer%27" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Like <code
 	      ><a href="Pipes.html#t:Producer"
@@ -851,8 +869,10 @@ f <code
 	    >yield</a
 	    > :: Monad m =&gt; a -&gt; <a href="Pipes.html#t:Producer-39-"
 	    >Producer'</a
-	    > a m ()</p
-	  ><div class="doc"
+	    > a m () <a href="src/Pipes.html#yield" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Produce a value</p
 	    ><pre
@@ -874,6 +894,8 @@ f <code
 	><p class="src"
 	  ><a name="v:for" class="def"
 	    >for</a
+	    > <a href="src/Pipes.html#for" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -911,7 +933,7 @@ f <code
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    ><code
 	      >(for p body)</code
@@ -1035,6 +1057,8 @@ x ==&gt;    p    ==&gt; b   ---'   x ==&gt;   body  ==&gt; c     =     x ==&gt; 
 	    >infixr 4</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.html#~%3E" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -1072,7 +1096,7 @@ x ==&gt;    p    ==&gt; b   ---'   x ==&gt;   body  ==&gt; c     =     x ==&gt; 
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Compose loop bodies</p
 	    ><pre
@@ -1186,6 +1210,8 @@ x ==&gt;    f    ==&gt; b   ---'   x ==&gt;    g    ==&gt; c     =     x ==&gt; 
 	    >infixl 4</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.html#%3C~" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -1223,7 +1249,7 @@ x ==&gt;    f    ==&gt; b   ---'   x ==&gt;    g    ==&gt; c     =     x ==&gt; 
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >(<code
 	      ><a href="Pipes.html#v:-126--62-"
@@ -1234,7 +1260,7 @@ x ==&gt;    f    ==&gt; b   ---'   x ==&gt;    g    ==&gt; c     =     x ==&gt; 
 	  ></div
 	><h2 id="g:3"
 	>Consumers</h2
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >Use <code
 	    ><a href="Pipes.html#v:await"
@@ -1316,8 +1342,10 @@ f <code
 	    >Proxy</a
 	    > () a () <a href="Pipes.html#t:X"
 	    >X</a
+	    > <a href="src/Pipes.Core.html#Consumer" class="link"
+	    >Source</a
 	    ></p
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    ><code
 	      ><a href="Pipes.html#t:Consumer"
@@ -1340,8 +1368,10 @@ f <code
 	    >forall</span
 	    > y' y. <a href="Pipes.html#t:Proxy"
 	    >Proxy</a
-	    > () a y' y m r</p
-	  ><div class="doc"
+	    > () a y' y m r <a href="src/Pipes.Core.html#Consumer%27" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Like <code
 	      ><a href="Pipes.html#t:Consumer"
@@ -1356,8 +1386,10 @@ f <code
 	    >await</a
 	    > :: Monad m =&gt; <a href="Pipes.html#t:Consumer-39-"
 	    >Consumer'</a
-	    > a m a</p
-	  ><div class="doc"
+	    > a m a <a href="src/Pipes.html#await" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Consume a value</p
 	    ><pre
@@ -1383,6 +1415,8 @@ f <code
 	    >infixr 5</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.html#%3E~" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -1420,7 +1454,7 @@ f <code
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    ><code
 	      >(draw &gt;~ p)</code
@@ -1542,6 +1576,8 @@ a ==&gt;    f    ==&gt; y   .---&gt;   b ==&gt;    g    ==&gt; y     =     a ==&
 	    >infixl 5</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.html#~%3C" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -1579,7 +1615,7 @@ a ==&gt;    f    ==&gt; y   .---&gt;   b ==&gt;    g    ==&gt; y     =     a ==&
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >(<code
 	      ><a href="Pipes.html#v:-62--126-"
@@ -1590,7 +1626,7 @@ a ==&gt;    f    ==&gt; y   .---&gt;   b ==&gt;    g    ==&gt; y     =     a ==&
 	  ></div
 	><h2 id="g:4"
 	>Pipes</h2
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >Use <code
 	    ><a href="Pipes.html#v:await"
@@ -1678,8 +1714,10 @@ f <code
 	    >Pipe</a
 	    > a b = <a href="Pipes.html#t:Proxy"
 	    >Proxy</a
-	    > () a () b</p
-	  ><div class="doc"
+	    > () a () b <a href="src/Pipes.Core.html#Pipe" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    ><code
 	      ><a href="Pipes.html#t:Pipe"
@@ -1702,8 +1740,10 @@ f <code
 	    >cat</a
 	    > :: Monad m =&gt; <a href="Pipes.html#t:Pipe"
 	    >Pipe</a
-	    > a a m r</p
-	  ><div class="doc"
+	    > a a m r <a href="src/Pipes.html#cat" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >The identity <code
 	      ><a href="Pipes.html#t:Pipe"
@@ -1722,6 +1762,8 @@ f <code
 	    >infixl 7</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.html#%3E-%3E" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -1759,7 +1801,7 @@ f <code
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    ><code
 	      ><a href="Pipes.html#t:Pipe"
@@ -1875,6 +1917,8 @@ a ==&gt;    f    ==&gt; b ==&gt;    g    ==&gt; c     =     a ==&gt;  f <code
 	    >infixr 7</span
 	    ><span class="rightedge"
 	    ></span
+	    > <a href="src/Pipes.html#%3C-%3C" class="link"
+	    >Source</a
 	    ></p
 	  ><div class="subs arguments"
 	  ><p class="caption"
@@ -1912,7 +1956,7 @@ a ==&gt;    f    ==&gt; b ==&gt;    g    ==&gt; c     =     a ==&gt;  f <code
 		></tr
 	      ></table
 	    ></div
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    >(<code
 	      ><a href="Pipes.html#v:-62--45--62-"
@@ -1929,8 +1973,10 @@ a ==&gt;    f    ==&gt; b ==&gt;    g    ==&gt; c     =     a ==&gt;  f <code
 	    >newtype</span
 	    > <a name="t:ListT" class="def"
 	    >ListT</a
-	    > m a</p
-	  ><div class="doc"
+	    > m a <a href="src/Pipes.html#ListT" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >The list monad transformer, which extends a monad with non-determinism</p
 	    ><p
@@ -2146,8 +2192,10 @@ a ==&gt;    f    ==&gt; b ==&gt;    g    ==&gt; c     =     a ==&gt;  f <code
 	    >runListT</a
 	    > :: Monad m =&gt; <a href="Pipes.html#t:ListT"
 	    >ListT</a
-	    > m a -&gt; m ()</p
-	  ><div class="doc"
+	    > m a -&gt; m () <a href="src/Pipes.html#runListT" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Run a self-contained <code
 	      ><a href="Pipes.html#t:ListT"
@@ -2164,8 +2212,10 @@ a ==&gt;    f    ==&gt; b ==&gt;    g    ==&gt; c     =     a ==&gt;  f <code
 	    >Enumerable</a
 	    > t <span class="keyword"
 	    >where</span
+	    > <a href="src/Pipes.html#Enumerable" class="link"
+	    >Source</a
 	    ></p
-	  ><div class="doc"
+	  ><div class="doc" lang="en"
 	  ><p
 	    ><code
 	      ><a href="Pipes.html#t:Enumerable"
@@ -2205,7 +2255,9 @@ toListT $ do x &lt;- m  =  do x &lt;- toListT m
 	      >toListT</a
 	      > :: Monad m =&gt; t m a -&gt; <a href="Pipes.html#t:ListT"
 	      >ListT</a
-	      > m a</p
+	      > m a <a href="src/Pipes.html#toListT" class="link"
+	      >Source</a
+	      ></p
 	    ></div
 	  ><div class="subs instances"
 	  ><p id="control.i:Enumerable" class="caption collapser" onclick="toggleSection('i:Enumerable')"
@@ -2268,8 +2320,10 @@ toListT $ do x &lt;- m  =  do x &lt;- toListT m
 	    >Producer</a
 	    > a m r -&gt; m (Either r (a, <a href="Pipes.html#t:Producer"
 	    >Producer</a
-	    > a m r))</p
-	  ><div class="doc"
+	    > a m r)) <a href="src/Pipes.html#next" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Consume the first value from a <code
 	      ><a href="Pipes.html#t:Producer"
@@ -2303,8 +2357,10 @@ toListT $ do x &lt;- m  =  do x &lt;- toListT m
 	    >each</a
 	    > :: (Monad m, F.Foldable f) =&gt; f a -&gt; <a href="Pipes.html#t:Producer-39-"
 	    >Producer'</a
-	    > a m ()</p
-	  ><div class="doc"
+	    > a m () <a href="src/Pipes.html#each" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Convert a <code
 	      >F.Foldable</code
@@ -2323,8 +2379,10 @@ toListT $ do x &lt;- m  =  do x &lt;- toListT m
 	    >Enumerable</a
 	    > t) =&gt; t m a -&gt; <a href="Pipes.html#t:Producer-39-"
 	    >Producer'</a
-	    > a m ()</p
-	  ><div class="doc"
+	    > a m () <a href="src/Pipes.html#every" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Convert an <code
 	      ><a href="Pipes.html#t:Enumerable"
@@ -2341,15 +2399,17 @@ toListT $ do x &lt;- m  =  do x &lt;- toListT m
 	><p class="src"
 	  ><a name="v:discard" class="def"
 	    >discard</a
-	    > :: Monad m =&gt; a -&gt; m ()</p
-	  ><div class="doc"
+	    > :: Monad m =&gt; a -&gt; m () <a href="src/Pipes.html#discard" class="link"
+	    >Source</a
+	    ></p
+	  ><div class="doc" lang="en"
 	  ><p
 	    >Discards a value</p
 	    ></div
 	  ></div
 	><h1 id="g:7"
 	>Re-exports</h1
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  ><a href="Control-Monad.html"
 	    >Control.Monad</a
@@ -2383,7 +2443,7 @@ toListT $ do x &lt;- m  =  do x &lt;- toListT m
 	  ></div
 	></div
       ></div
-    ><div id="footer"
+    ><div class="section" id="footer"
     ><p
       >Produced by <a href="http://www.haskell.org/haddock/"
 	>Haddock</a

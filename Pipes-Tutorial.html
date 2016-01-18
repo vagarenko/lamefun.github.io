@@ -17,9 +17,13 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Tutorial.html");
 </script
     ></head
   ><body
-  ><div id="package-header"
+  ><div class="section" id="package-header"
     ><ul class="links" id="page-menu"
       ><li
+	><a href="src/Pipes.Tutorial.html"
+	  >Source</a
+	  ></li
+	><li
 	><a href="index.html"
 	  >Contents</a
 	  ></li
@@ -35,7 +39,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Tutorial.html");
     ><h1 class="module-name"
       >Pipes.Tutorial</h1
       ><div id="sidebar"
-      ><div id="module-info"
+      ><div class="section" id="module-info"
 	><p class="caption"
 	  >Information</p
 	  ><table class="info"
@@ -77,7 +81,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Tutorial.html");
 	      ></tr
 	    ></table
 	  ></div
-	><div id="table-of-contents"
+	><div class="section" id="table-of-contents"
 	><p class="caption"
 	  >Contents</p
 	  ><ul
@@ -128,10 +132,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Tutorial.html");
 	    ></ul
 	  ></div
 	></div
-      ><div id="description"
+      ><div class="section" id="description"
       ><p class="caption"
 	>Description</p
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >Conventional Haskell stream programming forces you to choose only two of the
     following three features:</p
@@ -234,16 +238,16 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Tutorial.html");
     detail and illustrates several idioms.</p
 	  ></div
 	></div
-      ><div id="synopsis"
+      ><div class="section" id="synopsis"
       ><p id="control.syn" class="caption expander" onclick="toggleSection('syn')"
 	>Synopsis</p
 	><ul id="section.syn" class="hide" onclick="toggleSection('syn')"
 	></ul
 	></div
-      ><div id="interface"
+      ><div class="section" id="interface"
       ><h1 id="g:1"
 	>Introduction</h1
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >The <code
 	    >pipes</code
@@ -390,7 +394,7 @@ window.onload = function () {pageLoad();setSynopsis("mini_Pipes-Tutorial.html");
 	  ></div
 	><h1 id="g:2"
 	>Producers</h1
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  ><code
 	    ><a href="Pipes-Core.html#t:Producer"
@@ -1086,7 +1090,7 @@ each as = mapM_ yield as</pre
 	  ></div
 	><h1 id="g:3"
 	>Composability</h1
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >You might wonder why the body of a <code
 	    ><a href="Pipes.html#v:for"
@@ -1385,7 +1389,7 @@ f ~&gt; yield = f</pre
 	  ></div
 	><h1 id="g:4"
 	>Consumers</h1
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >Sometimes you don't want to use a <code
 	    ><a href="Pipes.html#v:for"
@@ -1814,7 +1818,7 @@ f &gt;~ await = f</pre
 	  ></div
 	><h1 id="g:5"
 	>Pipes</h1
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >Our previous programs were unsatisfactory because they were biased either
     towards the <code
@@ -2379,7 +2383,7 @@ $</pre
 	  ></div
 	><h1 id="g:6"
 	>ListT</h1
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  ><code
 	    >pipes</code
@@ -2766,7 +2770,7 @@ pipe = Pipes.takeWhile (not . isC) &gt;-&gt; loop example
 	  ></div
 	><h1 id="g:7"
 	>Tricks</h1
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  ><code
 	    >pipes</code
@@ -2978,7 +2982,7 @@ Test
 	  ></div
 	><h1 id="g:8"
 	>Conclusion</h1
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >This tutorial covers the concepts of connecting, building, and reading
     <code
@@ -3085,7 +3089,7 @@ Test
 	  ></div
 	><h1 id="g:9"
 	>Appendix: Types</h1
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  ><code
 	    >pipes</code
@@ -3817,7 +3821,7 @@ type Client'  a' a      m r = forall      y' y . Proxy a' a y' y m r</pre
 	  ></div
 	><h1 id="g:10"
 	>Appendix: Time Complexity</h1
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >There are three functions that give quadratic time complexity when used in
     within <code
@@ -3894,7 +3898,7 @@ linear n = lowerCodensity $ replicateM n $ lift await</pre
 	  ></div
 	><h1 id="g:11"
 	>Copyright</h1
-	><div class="doc"
+	><div class="doc" lang="en"
 	><p
 	  >This tutorial is licensed under a
     <a href="http://creativecommons.org/licenses/by/4.0/"
@@ -3903,7 +3907,7 @@ linear n = lowerCodensity $ replicateM n $ lift await</pre
 	  ></div
 	></div
       ></div
-    ><div id="footer"
+    ><div class="section" id="footer"
     ><p
       >Produced by <a href="http://www.haskell.org/haddock/"
 	>Haddock</a
