@@ -930,7 +930,7 @@ table.info {
   }
 }
 
-@media all and (min-width: 740px) and (max-width: 1200px) {
+@media all and (min-width: 740px) and (max-width: 1199px) {
   #content {
     width: 100%;
     max-width: 700px;
