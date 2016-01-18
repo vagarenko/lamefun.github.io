@@ -1,0 +1,7715 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+><head
+  ><link rel="stylesheet" type="text/css" href="style.css"
+     /><script type="text/javascript" src="highlight.js"
+    ></script
+    ></head
+  ><body
+  ><pre
+    ><span class="hs-pragma"
+      >{-# LANGUAGE
+    RankNTypes
+  , FlexibleInstances
+  , MultiParamTypeClasses
+  , UndecidableInstances
+  , Trustworthy
+  #-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >{-|
+description: Recommended entry point
+Copyright   : (c) Some Guy, 2013
+                  Someone Else, 2014
+License     : GPL-3
+Maintainer  : sample@email.com
+Stability   : experimental
+Portability : POSIX
+
+This module is the recommended entry point to the @pipes@ library.
+
+    Read &quot;Pipes.Tutorial&quot; if you want a tutorial explaining how to use this
+    library.
+-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-keyword"
+      >module</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Pipes</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-comment"
+      >-- * The Proxy Monad Transformer</span
+      ><span class=""
+      >
+      </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#X"
+      ><span class="hs-identifier hs-type"
+	>X</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#Effect"
+      ><span class="hs-identifier hs-type"
+	>Effect</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#Effect%27"
+      ><span class="hs-identifier hs-type"
+	>Effect'</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#runEffect"
+      ><span class="hs-identifier hs-var"
+	>runEffect</span
+	></a
+      ><span class=""
+      >
+
+    </span
+      ><span class="hs-comment"
+      >-- ** Producers</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-comment"
+      >-- $producers</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#Producer"
+      ><span class="hs-identifier hs-type"
+	>Producer</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#Producer%27"
+      ><span class="hs-identifier hs-type"
+	>Producer'</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#yield"
+      ><span class="hs-identifier hs-var"
+	>yield</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#for"
+      ><span class="hs-identifier hs-var"
+	>for</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#~%3E"
+      ><span class="hs-operator hs-var"
+	>~&gt;</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#%3C~"
+      ><span class="hs-operator hs-var"
+	>&lt;~</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+
+    </span
+      ><span class="hs-comment"
+      >-- ** Consumers</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-comment"
+      >-- $consumers</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#Consumer"
+      ><span class="hs-identifier hs-type"
+	>Consumer</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#Consumer%27"
+      ><span class="hs-identifier hs-type"
+	>Consumer'</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#await"
+      ><span class="hs-identifier hs-var"
+	>await</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#%3E~"
+      ><span class="hs-operator hs-var"
+	>&gt;~</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#~%3C"
+      ><span class="hs-operator hs-var"
+	>~&lt;</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+
+    </span
+      ><span class="hs-comment"
+      >-- ** Pipes</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-comment"
+      >-- $pipes</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#Pipe"
+      ><span class="hs-identifier hs-type"
+	>Pipe</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#cat"
+      ><span class="hs-identifier hs-var"
+	>cat</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#%3E-%3E"
+      ><span class="hs-operator hs-var"
+	>&gt;-&gt;</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#%3C-%3C"
+      ><span class="hs-operator hs-var"
+	>&lt;-&lt;</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+
+    </span
+      ><span class="hs-comment"
+      >-- * ListT</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#ListT"
+      ><span class="hs-identifier hs-type"
+	>ListT</span
+	></a
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-glyph"
+      >..</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#runListT"
+      ><span class="hs-identifier hs-var"
+	>runListT</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Enumerable"
+      ><span class="hs-identifier hs-type"
+	>Enumerable</span
+	></a
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-glyph"
+      >..</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+
+    </span
+      ><span class="hs-comment"
+      >-- * Utilities</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#next"
+      ><span class="hs-identifier hs-var"
+	>next</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#each"
+      ><span class="hs-identifier hs-var"
+	>each</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#every"
+      ><span class="hs-identifier hs-var"
+	>every</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#discard"
+      ><span class="hs-identifier hs-var"
+	>discard</span
+	></a
+      ><span class=""
+      >
+
+    </span
+      ><span class="hs-comment"
+      >-- * Re-exports</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-comment"
+      >-- $reexports</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >module</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Control</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Monad</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >module</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Control</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Monad</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >IO</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Class</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >module</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Control</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Monad</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Trans</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Class</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >module</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Control</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Monad</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Morph</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >module</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Data</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Foldable</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-keyword"
+      >import</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Control</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Applicative</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >Applicative</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >pure</span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-operator hs-var"
+      >&lt;*&gt;</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Alternative</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >empty</span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-operator hs-var"
+      >&lt;|&gt;</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >import</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Control</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >void</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >import</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Control</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Monad</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Error</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >MonadError</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-glyph"
+      >..</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >import</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Control</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Monad</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >IO</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Class</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >MonadIO</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >liftIO</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >import</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Control</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >MonadPlus</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >mzero</span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >mplus</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >import</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Control</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Monad</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Reader</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >MonadReader</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-glyph"
+      >..</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >import</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Control</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Monad</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >State</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >MonadState</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-glyph"
+      >..</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >import</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Control</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Monad</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Trans</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Class</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >MonadTrans</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >lift</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >import</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Control</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Monad</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Trans</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Error</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >ErrorT</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >runErrorT</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >import</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Control</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Monad</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Trans</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Identity</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >IdentityT</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >runIdentityT</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >import</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Control</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Monad</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Trans</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Maybe</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >MaybeT</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >runMaybeT</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >import</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Control</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Monad</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Writer</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >MonadWriter</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-glyph"
+      >..</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >import</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Data</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Foldable</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >Foldable</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >import</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Data</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Monoid</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >Monoid</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-glyph"
+      >..</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >import</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html"
+      ><span class="hs-identifier"
+	>Pipes</span
+	><span class="hs-operator"
+	>.</span
+	><span class="hs-identifier"
+	>Core</span
+	></a
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >import</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html"
+      ><span class="hs-identifier"
+	>Pipes</span
+	><span class="hs-operator"
+	>.</span
+	><span class="hs-identifier"
+	>Internal</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-glyph"
+      >..</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >import</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >qualified</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Data</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Foldable</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >as</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >F</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >-- Re-exports</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >import</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >Control</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Monad</span
+      ><span class="hs-operator"
+      >.</span
+      ><span class="hs-identifier"
+      >Morph</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >MFunctor</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >hoist</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-keyword"
+      >infixl</span
+      ><span class=""
+      > </span
+      ><span class="hs-number"
+      >4</span
+      ><span class=""
+      > </span
+      ><span class="hs-operator"
+      >&lt;~</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >infixr</span
+      ><span class=""
+      > </span
+      ><span class="hs-number"
+      >4</span
+      ><span class=""
+      > </span
+      ><span class="hs-operator"
+      >~&gt;</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >infixl</span
+      ><span class=""
+      > </span
+      ><span class="hs-number"
+      >5</span
+      ><span class=""
+      > </span
+      ><span class="hs-operator"
+      >~&lt;</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >infixr</span
+      ><span class=""
+      > </span
+      ><span class="hs-number"
+      >5</span
+      ><span class=""
+      > </span
+      ><span class="hs-operator"
+      >&gt;~</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >infixl</span
+      ><span class=""
+      > </span
+      ><span class="hs-number"
+      >7</span
+      ><span class=""
+      > </span
+      ><span class="hs-operator"
+      >&gt;-&gt;</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >infixr</span
+      ><span class=""
+      > </span
+      ><span class="hs-number"
+      >7</span
+      ><span class=""
+      > </span
+      ><span class="hs-operator"
+      >&lt;-&lt;</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >{- $producers
+    Use 'yield' to produce output and ('~&gt;') \/ 'for' to substitute 'yield's.
+
+    'yield' and ('~&gt;') obey the 'Control.Category.Category' laws:
+
+@
+\-\- Substituting \'yield\' with \'f\' gives \'f\'
+'yield' '~&gt;' f = f
+
+\-\- Substituting every \'yield\' with another \'yield\' does nothing
+f '~&gt;' 'yield' = f
+
+\-\- \'yield\' substitution is associative
+(f '~&gt;' g) '~&gt;' h = f '~&gt;' (g '~&gt;' h)
+@
+
+    These are equivalent to the following \&quot;for loop laws\&quot;:
+
+@
+\-\- Looping over a single yield simplifies to function application
+'for' ('yield' x) f = f x
+
+\-\- Re-yielding every element of a stream returns the original stream
+'for' s 'yield' = s
+
+\-\- Nested for loops can become a sequential 'for' loops if the inner loop
+\-\- body ignores the outer loop variable
+'for' s (\\a -\&gt; 'for' (f a) g) = 'for' ('for' s f) g = 'for' s (f '~&gt;' g)
+@
+
+-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >{-| Produce a value
+
+@
+'yield' :: 'Monad' m =&gt; a -&gt; 'Pipe' x a m ()
+@
+-}</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-identifier"
+      >yield</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >::</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412239"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412238"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#Producer%27"
+      ><span class="hs-identifier hs-type"
+	>Producer'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412238"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412239"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><a name="yield"
+      ><a href="Pipes.html#yield"
+	><span class="hs-identifier"
+	  >yield</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#respond"
+      ><span class="hs-identifier hs-var"
+	>respond</span
+	></a
+      ><span class=""
+      >
+</span
+      ><span class="hs-pragma"
+      >{-# INLINABLE yield #-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >{-| @(for p body)@ loops over @p@ replacing each 'yield' with @body@.
+
+@
+'for' :: 'Monad' m =&gt; 'Producer' b m r -&gt; (b -&gt; 'Effect'       m ()) -&gt; 'Effect'       m r
+'for' :: 'Monad' m =&gt; 'Producer' b m r -&gt; (b -&gt; 'Producer'   c m ()) -&gt; 'Producer'   c m r
+'for' :: 'Monad' m =&gt; 'Pipe'   x b m r -&gt; (b -&gt; 'Consumer' x   m ()) -&gt; 'Consumer' x   m r
+'for' :: 'Monad' m =&gt; 'Pipe'   x b m r -&gt; (b -&gt; 'Pipe'     x c m ()) -&gt; 'Pipe'     x c m r
+@
+
+    The following diagrams show the flow of information:
+
+@
+                              .---&gt;   b
+                             /        |
+   +-----------+            /   +-----|-----+                 +---------------+
+   |           |           /    |     v     |                 |               |
+   |           |          /     |           |                 |               |
+x ==&gt;    p    ==&gt; b   ---'   x ==&gt;   body  ==&gt; c     =     x ==&gt; 'for' p body  ==&gt; c
+   |           |                |           |                 |               |
+   |     |     |                |     |     |                 |       |       |
+   +-----|-----+                +-----|-----+                 +-------|-------+
+         v                            v                               v
+         r                            ()                              r
+@
+
+    For a more complete diagram including bidirectional flow, see &quot;Pipes.Core#respond-diagram&quot;.
+-}</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-identifier"
+      >for</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >::</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412234"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      >       </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412230"
+      ><span class="hs-identifier hs-type"
+	>x'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412231"
+      ><span class="hs-identifier hs-type"
+	>x</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412232"
+      ><span class="hs-identifier hs-type"
+	>b'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412233"
+      ><span class="hs-identifier hs-type"
+	>b</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412234"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412235"
+      ><span class="hs-identifier hs-type"
+	>a'</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-comment"
+      >-- ^</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412233"
+      ><span class="hs-identifier hs-type"
+	>b</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412230"
+      ><span class="hs-identifier hs-type"
+	>x'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412231"
+      ><span class="hs-identifier hs-type"
+	>x</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412236"
+      ><span class="hs-identifier hs-type"
+	>c'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412237"
+      ><span class="hs-identifier hs-type"
+	>c</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412234"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412232"
+      ><span class="hs-identifier hs-type"
+	>b'</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-comment"
+      >-- ^</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      >       </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412230"
+      ><span class="hs-identifier hs-type"
+	>x'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412231"
+      ><span class="hs-identifier hs-type"
+	>x</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412236"
+      ><span class="hs-identifier hs-type"
+	>c'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412237"
+      ><span class="hs-identifier hs-type"
+	>c</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412234"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412235"
+      ><span class="hs-identifier hs-type"
+	>a'</span
+	></a
+      ><span class=""
+      >
+</span
+      ><a name="for"
+      ><a href="Pipes.html#for"
+	><span class="hs-identifier"
+	  >for</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.Core.html#%2F%2F%3E"
+      ><span class="hs-operator hs-var"
+	>//&gt;</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-pragma"
+      >{-# INLINABLE for #-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-pragma"
+      >{-# RULES
+    &quot;for (for p f) g&quot; forall p f g . for (for p f) g = for p (\a -&gt; for (f a) g)
+
+  ; &quot;for p yield&quot; forall p . for p yield = p
+
+  ; &quot;for (yield x) f&quot; forall x f . for (yield x) f = f x
+
+  ; &quot;for cat f&quot; forall f .
+        for cat f =
+            let go = do
+                    x &lt;- await
+                    f x
+                    go
+            in  go
+
+  ; &quot;f &gt;~ (g &gt;~ p)&quot; forall f g p . f &gt;~ (g &gt;~ p) = (f &gt;~ g) &gt;~ p
+
+  ; &quot;await &gt;~ p&quot; forall p . await &gt;~ p = p
+
+  ; &quot;p &gt;~ await&quot; forall p . p &gt;~ await = p
+
+  ; &quot;m &gt;~ cat&quot; forall m .
+        m &gt;~ cat =
+            let go = do
+                    x &lt;- m
+                    yield x
+                    go
+            in  go
+
+  ; &quot;p1 &gt;-&gt; (p2 &gt;-&gt; p3)&quot; forall p1 p2 p3 .
+        p1 &gt;-&gt; (p2 &gt;-&gt; p3) = (p1 &gt;-&gt; p2) &gt;-&gt; p3
+
+  ; &quot;p &gt;-&gt; cat&quot; forall p . p &gt;-&gt; cat = p
+
+  ; &quot;cat &gt;-&gt; p&quot; forall p . cat &gt;-&gt; p = p
+
+  #-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >{-| Compose loop bodies
+
+@
+('~&gt;') :: 'Monad' m =&gt; (a -&gt; 'Producer' b m r) -&gt; (b -&gt; 'Effect'       m ()) -&gt; (a -&gt; 'Effect'       m r)
+('~&gt;') :: 'Monad' m =&gt; (a -&gt; 'Producer' b m r) -&gt; (b -&gt; 'Producer'   c m ()) -&gt; (a -&gt; 'Producer'   c m r)
+('~&gt;') :: 'Monad' m =&gt; (a -&gt; 'Pipe'   x b m r) -&gt; (b -&gt; 'Consumer' x   m ()) -&gt; (a -&gt; 'Consumer' x   m r)
+('~&gt;') :: 'Monad' m =&gt; (a -&gt; 'Pipe'   x b m r) -&gt; (b -&gt; 'Pipe'     x c m ()) -&gt; (a -&gt; 'Pipe'     x c m r)
+@
+
+    The following diagrams show the flow of information:
+
+@
+         a                    .---&gt;   b                              a
+         |                   /        |                              |
+   +-----|-----+            /   +-----|-----+                 +------|------+
+   |     v     |           /    |     v     |                 |      v      |
+   |           |          /     |           |                 |             |
+x ==&gt;    f    ==&gt; b   ---'   x ==&gt;    g    ==&gt; c     =     x ==&gt;   f '~&gt;' g  ==&gt; c
+   |           |                |           |                 |             |
+   |     |     |                |     |     |                 |      |      |
+   +-----|-----+                +-----|-----+                 +------|------+
+         v                            v                              v
+         r                            ()                             r
+@
+
+    For a more complete diagram including bidirectional flow, see &quot;Pipes.Core#respond-diagram&quot;.
+-}</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-operator"
+      >~&gt;</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >::</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412226"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412221"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412222"
+      ><span class="hs-identifier hs-type"
+	>x'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412223"
+      ><span class="hs-identifier hs-type"
+	>x</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412224"
+      ><span class="hs-identifier hs-type"
+	>b'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412225"
+      ><span class="hs-identifier hs-type"
+	>b</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412226"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412227"
+      ><span class="hs-identifier hs-type"
+	>a'</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-comment"
+      >-- ^</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412225"
+      ><span class="hs-identifier hs-type"
+	>b</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412222"
+      ><span class="hs-identifier hs-type"
+	>x'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412223"
+      ><span class="hs-identifier hs-type"
+	>x</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412228"
+      ><span class="hs-identifier hs-type"
+	>c'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412229"
+      ><span class="hs-identifier hs-type"
+	>c</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412226"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412224"
+      ><span class="hs-identifier hs-type"
+	>b'</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-comment"
+      >-- ^</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412221"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412222"
+      ><span class="hs-identifier hs-type"
+	>x'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412223"
+      ><span class="hs-identifier hs-type"
+	>x</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412228"
+      ><span class="hs-identifier hs-type"
+	>c'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412229"
+      ><span class="hs-identifier hs-type"
+	>c</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412226"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412227"
+      ><span class="hs-identifier hs-type"
+	>a'</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-special"
+      >(</span
+      ><a name="~%3E"
+      ><a href="Pipes.html#~%3E"
+	><span class="hs-operator"
+	  >~&gt;</span
+	  ></a
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.Core.html#%2F%3E%2F"
+      ><span class="hs-operator hs-var"
+	>/&gt;/</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-pragma"
+      >{-# INLINABLE (~&gt;) #-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >-- | ('~&gt;') with the arguments flipped</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-operator"
+      >&lt;~</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >::</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412217"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412212"
+      ><span class="hs-identifier hs-type"
+	>b</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412213"
+      ><span class="hs-identifier hs-type"
+	>x'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412214"
+      ><span class="hs-identifier hs-type"
+	>x</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412215"
+      ><span class="hs-identifier hs-type"
+	>c'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412216"
+      ><span class="hs-identifier hs-type"
+	>c</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412217"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412218"
+      ><span class="hs-identifier hs-type"
+	>b'</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-comment"
+      >-- ^</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412219"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412213"
+      ><span class="hs-identifier hs-type"
+	>x'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412214"
+      ><span class="hs-identifier hs-type"
+	>x</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412218"
+      ><span class="hs-identifier hs-type"
+	>b'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412212"
+      ><span class="hs-identifier hs-type"
+	>b</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412217"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412220"
+      ><span class="hs-identifier hs-type"
+	>a'</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-comment"
+      >-- ^</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412219"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412213"
+      ><span class="hs-identifier hs-type"
+	>x'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412214"
+      ><span class="hs-identifier hs-type"
+	>x</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412215"
+      ><span class="hs-identifier hs-type"
+	>c'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412216"
+      ><span class="hs-identifier hs-type"
+	>c</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412217"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412220"
+      ><span class="hs-identifier hs-type"
+	>a'</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><a name="local-1627412240"
+      ><a href="#local-1627412240"
+	><span class="hs-identifier"
+	  >g</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="%3C~"
+      ><a href="Pipes.html#%3C~"
+	><span class="hs-operator"
+	  >&lt;~</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412241"
+      ><a href="#local-1627412241"
+	><span class="hs-identifier"
+	  >f</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412241"
+      ><span class="hs-identifier hs-var"
+	>f</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#~%3E"
+      ><span class="hs-operator hs-var"
+	>~&gt;</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412240"
+      ><span class="hs-identifier hs-var"
+	>g</span
+	></a
+      ><span class=""
+      >
+</span
+      ><span class="hs-pragma"
+      >{-# INLINABLE (&lt;~) #-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >{- $consumers
+    Use 'await' to request input and ('&gt;~') to substitute 'await's.
+
+    'await' and ('&gt;~') obey the 'Control.Category.Category' laws:
+
+@
+\-\- Substituting every \'await\' with another \'await\' does nothing
+'await' '&gt;~' f = f
+
+\-\- Substituting \'await\' with \'f\' gives \'f\'
+f '&gt;~' 'await' = f
+
+\-\- \'await\' substitution is associative
+(f '&gt;~' g) '&gt;~' h = f '&gt;~' (g '&gt;~' h)
+@
+
+-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >{-| Consume a value
+
+@
+'await' :: 'Monad' m =&gt; 'Pipe' a y m a
+@
+-}</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-identifier"
+      >await</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >::</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412211"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#Consumer%27"
+      ><span class="hs-identifier hs-type"
+	>Consumer'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412210"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412211"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412210"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      >
+</span
+      ><a name="await"
+      ><a href="Pipes.html#await"
+	><span class="hs-identifier"
+	  >await</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#request"
+      ><span class="hs-identifier hs-var"
+	>request</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-pragma"
+      >{-# INLINABLE await #-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >{-| @(draw &gt;~ p)@ loops over @p@ replacing each 'await' with @draw@
+
+@
+('&gt;~') :: 'Monad' m =&gt; 'Effect'       m b -&gt; 'Consumer' b   m c -&gt; 'Effect'       m c
+('&gt;~') :: 'Monad' m =&gt; 'Consumer' a   m b -&gt; 'Consumer' b   m c -&gt; 'Consumer' a   m c
+('&gt;~') :: 'Monad' m =&gt; 'Producer'   y m b -&gt; 'Pipe'     b y m c -&gt; 'Producer'   y m c
+('&gt;~') :: 'Monad' m =&gt; 'Pipe'     a y m b -&gt; 'Pipe'     b y m c -&gt; 'Pipe'     a y m c
+@
+
+    The following diagrams show the flow of information:
+
+@
+   +-----------+                 +-----------+                 +-------------+
+   |           |                 |           |                 |             |
+   |           |                 |           |                 |             |
+a ==&gt;    f    ==&gt; y   .---&gt;   b ==&gt;    g    ==&gt; y     =     a ==&gt;   f '&gt;~' g  ==&gt; y
+   |           |     /           |           |                 |             |
+   |     |     |    /            |     |     |                 |      |      |
+   +-----|-----+   /             +-----|-----+                 +------|------+
+         v        /                    v                              v
+         b   ----'                     c                              c
+@
+
+    For a more complete diagram including bidirectional flow, see &quot;Pipes.Core#request-diagram&quot;.
+-}</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-operator"
+      >&gt;~</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >::</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412207"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412203"
+      ><span class="hs-identifier hs-type"
+	>a'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412204"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412205"
+      ><span class="hs-identifier hs-type"
+	>y'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412206"
+      ><span class="hs-identifier hs-type"
+	>y</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412207"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412208"
+      ><span class="hs-identifier hs-type"
+	>b</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-comment"
+      >-- ^</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412208"
+      ><span class="hs-identifier hs-type"
+	>b</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412205"
+      ><span class="hs-identifier hs-type"
+	>y'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412206"
+      ><span class="hs-identifier hs-type"
+	>y</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412207"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412209"
+      ><span class="hs-identifier hs-type"
+	>c</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-comment"
+      >-- ^</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412203"
+      ><span class="hs-identifier hs-type"
+	>a'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412204"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412205"
+      ><span class="hs-identifier hs-type"
+	>y'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412206"
+      ><span class="hs-identifier hs-type"
+	>y</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412207"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412209"
+      ><span class="hs-identifier hs-type"
+	>c</span
+	></a
+      ><span class=""
+      >
+</span
+      ><a name="local-1627412242"
+      ><a href="#local-1627412242"
+	><span class="hs-identifier"
+	  >p1</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="%3E~"
+      ><a href="Pipes.html#%3E~"
+	><span class="hs-operator"
+	  >&gt;~</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412243"
+      ><a href="#local-1627412243"
+	><span class="hs-identifier"
+	  >p2</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-glyph"
+      >\</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412242"
+      ><span class="hs-identifier hs-var"
+	>p1</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#%3E%5C%5C"
+      ><span class="hs-operator hs-var"
+	>&gt;\\</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412243"
+      ><span class="hs-identifier hs-var"
+	>p2</span
+	></a
+      ><span class=""
+      >
+</span
+      ><span class="hs-pragma"
+      >{-# INLINABLE (&gt;~) #-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >-- | ('&gt;~') with the arguments flipped</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-operator"
+      >~&lt;</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >::</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412199"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412196"
+      ><span class="hs-identifier hs-type"
+	>b</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412197"
+      ><span class="hs-identifier hs-type"
+	>y'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412198"
+      ><span class="hs-identifier hs-type"
+	>y</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412199"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412200"
+      ><span class="hs-identifier hs-type"
+	>c</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-comment"
+      >-- ^</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412201"
+      ><span class="hs-identifier hs-type"
+	>a'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412202"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412197"
+      ><span class="hs-identifier hs-type"
+	>y'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412198"
+      ><span class="hs-identifier hs-type"
+	>y</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412199"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412196"
+      ><span class="hs-identifier hs-type"
+	>b</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-comment"
+      >-- ^</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412201"
+      ><span class="hs-identifier hs-type"
+	>a'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412202"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412197"
+      ><span class="hs-identifier hs-type"
+	>y'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412198"
+      ><span class="hs-identifier hs-type"
+	>y</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412199"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412200"
+      ><span class="hs-identifier hs-type"
+	>c</span
+	></a
+      ><span class=""
+      >
+</span
+      ><a name="local-1627412244"
+      ><a href="#local-1627412244"
+	><span class="hs-identifier"
+	  >p2</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="~%3C"
+      ><a href="Pipes.html#~%3C"
+	><span class="hs-operator"
+	  >~&lt;</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412245"
+      ><a href="#local-1627412245"
+	><span class="hs-identifier"
+	  >p1</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412245"
+      ><span class="hs-identifier hs-var"
+	>p1</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#%3E~"
+      ><span class="hs-operator hs-var"
+	>&gt;~</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412244"
+      ><span class="hs-identifier hs-var"
+	>p2</span
+	></a
+      ><span class=""
+      >
+</span
+      ><span class="hs-pragma"
+      >{-# INLINABLE (~&lt;) #-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >{- $pipes
+    Use 'await' and 'yield' to build 'Pipe's and ('&gt;-&gt;') to connect 'Pipe's.
+
+    'cat' and ('&gt;-&gt;') obey the 'Control.Category.Category' laws:
+
+@
+\-\- Useless use of cat
+'cat' '&gt;-&gt;' f = f
+
+\-\- Redirecting output to cat does nothing
+f '&gt;-&gt;' 'cat' = f
+
+\-\- The pipe operator is associative
+(f '&gt;-&gt;' g) '&gt;-&gt;' h = f '&gt;-&gt;' (g '&gt;-&gt;' h)
+@
+
+-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >-- | The identity 'Pipe', analogous to the Unix @cat@ program</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-identifier"
+      >cat</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >::</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412194"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#Pipe"
+      ><span class="hs-identifier hs-type"
+	>Pipe</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412193"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412193"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412194"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412195"
+      ><span class="hs-identifier hs-type"
+	>r</span
+	></a
+      ><span class=""
+      >
+</span
+      ><a name="cat"
+      ><a href="Pipes.html#cat"
+	><span class="hs-identifier"
+	  >cat</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#pull"
+      ><span class="hs-identifier hs-var"
+	>pull</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-pragma"
+      >{-# INLINABLE cat #-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >{-| 'Pipe' composition, analogous to the Unix pipe operator
+
+@
+('&gt;-&gt;') :: 'Monad' m =&gt; 'Producer' b m r -&gt; 'Consumer' b   m r -&gt; 'Effect'       m r
+('&gt;-&gt;') :: 'Monad' m =&gt; 'Producer' b m r -&gt; 'Pipe'     b c m r -&gt; 'Producer'   c m r
+('&gt;-&gt;') :: 'Monad' m =&gt; 'Pipe'   a b m r -&gt; 'Consumer' b   m r -&gt; 'Consumer' a   m r
+('&gt;-&gt;') :: 'Monad' m =&gt; 'Pipe'   a b m r -&gt; 'Pipe'     b c m r -&gt; 'Pipe'     a c m r
+@
+
+    The following diagrams show the flow of information:
+
+@
+   +-----------+     +-----------+                 +-------------+
+   |           |     |           |                 |             |
+   |           |     |           |                 |             |
+a ==&gt;    f    ==&gt; b ==&gt;    g    ==&gt; c     =     a ==&gt;  f '&gt;-&gt;' g  ==&gt; c
+   |           |     |           |                 |             |
+   |     |     |     |     |     |                 |      |      |
+   +-----|-----+     +-----|-----+                 +------|------+
+         v                 v                              v
+         r                 r                              r
+@
+
+    For a more complete diagram including bidirectional flow, see &quot;Pipes.Core#pull-diagram&quot;.
+-}</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-operator"
+      >&gt;-&gt;</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >::</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412189"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412186"
+      ><span class="hs-identifier hs-type"
+	>a'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412187"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412188"
+      ><span class="hs-identifier hs-type"
+	>b</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412189"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412190"
+      ><span class="hs-identifier hs-type"
+	>r</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-comment"
+      >-- ^</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412188"
+      ><span class="hs-identifier hs-type"
+	>b</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412191"
+      ><span class="hs-identifier hs-type"
+	>c'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412192"
+      ><span class="hs-identifier hs-type"
+	>c</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412189"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412190"
+      ><span class="hs-identifier hs-type"
+	>r</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-comment"
+      >-- ^</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412186"
+      ><span class="hs-identifier hs-type"
+	>a'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412187"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412191"
+      ><span class="hs-identifier hs-type"
+	>c'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412192"
+      ><span class="hs-identifier hs-type"
+	>c</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412189"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412190"
+      ><span class="hs-identifier hs-type"
+	>r</span
+	></a
+      ><span class=""
+      >
+</span
+      ><a name="local-1627412246"
+      ><a href="#local-1627412246"
+	><span class="hs-identifier"
+	  >p1</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="%3E-%3E"
+      ><a href="Pipes.html#%3E-%3E"
+	><span class="hs-operator"
+	  >&gt;-&gt;</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412247"
+      ><a href="#local-1627412247"
+	><span class="hs-identifier"
+	  >p2</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-glyph"
+      >\</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412246"
+      ><span class="hs-identifier hs-var"
+	>p1</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#%2B%3E%3E"
+      ><span class="hs-operator hs-var"
+	>+&gt;&gt;</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412247"
+      ><span class="hs-identifier hs-var"
+	>p2</span
+	></a
+      ><span class=""
+      >
+</span
+      ><span class="hs-pragma"
+      >{-# INLINABLE (&gt;-&gt;) #-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >{-| The list monad transformer, which extends a monad with non-determinism
+
+    'return' corresponds to 'yield', yielding a single value
+
+    ('&gt;&gt;=') corresponds to 'for', calling the second computation once for each
+    time the first computation 'yield's.
+-}</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >newtype</span
+      ><span class=""
+      > </span
+      ><a name="ListT"
+      ><a href="Pipes.html#ListT"
+	><span class="hs-identifier"
+	  >ListT</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412164"
+      ><a href="#local-1627412164"
+	><span class="hs-identifier"
+	  >m</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412165"
+      ><a href="#local-1627412165"
+	><span class="hs-identifier"
+	  >a</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a name="Select"
+      ><a href="Pipes.html#Select"
+	><span class="hs-identifier"
+	  >Select</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >{</span
+      ><span class=""
+      > </span
+      ><a name="enumerate"
+      ><a href="Pipes.html#enumerate"
+	><span class="hs-identifier"
+	  >enumerate</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >::</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#Producer"
+      ><span class="hs-identifier hs-type"
+	>Producer</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412165"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412164"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-keyword"
+      >instance</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412339"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Functor</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#ListT"
+      ><span class="hs-identifier hs-type"
+	>ListT</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412339"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-805306541"
+      ><span class="hs-identifier"
+	>fmap</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412340"
+      ><a href="#local-1627412340"
+	><span class="hs-identifier"
+	  >f</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412341"
+      ><a href="#local-1627412341"
+	><span class="hs-identifier"
+	  >p</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Select"
+      ><span class="hs-identifier hs-var"
+	>Select</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#for"
+      ><span class="hs-identifier hs-var"
+	>for</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#enumerate"
+      ><span class="hs-identifier hs-var"
+	>enumerate</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412341"
+      ><span class="hs-identifier hs-var"
+	>p</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-glyph"
+      >\</span
+      ><a name="local-1627412342"
+      ><a href="#local-1627412342"
+	><span class="hs-identifier"
+	  >a</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#yield"
+      ><span class="hs-identifier hs-var"
+	>yield</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412340"
+      ><span class="hs-identifier hs-var"
+	>f</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412342"
+      ><span class="hs-identifier hs-var"
+	>a</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-keyword"
+      >instance</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412333"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Applicative</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#ListT"
+      ><span class="hs-identifier hs-type"
+	>ListT</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412333"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-805307120"
+      ><span class="hs-identifier"
+	>pure</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412334"
+      ><a href="#local-1627412334"
+	><span class="hs-identifier"
+	  >a</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Select"
+      ><span class="hs-identifier hs-var"
+	>Select</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#yield"
+      ><span class="hs-identifier hs-var"
+	>yield</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412334"
+      ><span class="hs-identifier hs-var"
+	>a</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-1627412335"
+      ><a href="#local-1627412335"
+	><span class="hs-identifier"
+	  >mf</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-805307119"
+      ><span class="hs-operator"
+	>&lt;*&gt;</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412336"
+      ><a href="#local-1627412336"
+	><span class="hs-identifier"
+	  >mx</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Select"
+      ><span class="hs-identifier hs-var"
+	>Select</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class=""
+      >
+        </span
+      ><a href="Pipes.html#for"
+      ><span class="hs-identifier hs-var"
+	>for</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#enumerate"
+      ><span class="hs-identifier hs-var"
+	>enumerate</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412335"
+      ><span class="hs-identifier hs-var"
+	>mf</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-glyph"
+      >\</span
+      ><a name="local-1627412337"
+      ><a href="#local-1627412337"
+	><span class="hs-identifier"
+	  >f</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      >
+        </span
+      ><a href="Pipes.html#for"
+      ><span class="hs-identifier hs-var"
+	>for</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#enumerate"
+      ><span class="hs-identifier hs-var"
+	>enumerate</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412336"
+      ><span class="hs-identifier hs-var"
+	>mx</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-glyph"
+      >\</span
+      ><a name="local-1627412338"
+      ><a href="#local-1627412338"
+	><span class="hs-identifier"
+	  >x</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      >
+        </span
+      ><a href="Pipes.html#yield"
+      ><span class="hs-identifier hs-var"
+	>yield</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412337"
+      ><span class="hs-identifier hs-var"
+	>f</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412338"
+      ><span class="hs-identifier hs-var"
+	>x</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-keyword"
+      >instance</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412328"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#ListT"
+      ><span class="hs-identifier hs-type"
+	>ListT</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412328"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-805306542"
+      ><span class="hs-identifier"
+	>return</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412329"
+      ><a href="#local-1627412329"
+	><span class="hs-identifier"
+	  >a</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Select"
+      ><span class="hs-identifier hs-var"
+	>Select</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#yield"
+      ><span class="hs-identifier hs-var"
+	>yield</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412329"
+      ><span class="hs-identifier hs-var"
+	>a</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-1627412330"
+      ><a href="#local-1627412330"
+	><span class="hs-identifier"
+	  >m</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-805306539"
+      ><span class="hs-operator"
+	>&gt;&gt;=</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412331"
+      ><a href="#local-1627412331"
+	><span class="hs-identifier"
+	  >f</span
+	  ></a
+	></a
+      ><span class=""
+      >  </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Select"
+      ><span class="hs-identifier hs-var"
+	>Select</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#for"
+      ><span class="hs-identifier hs-var"
+	>for</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#enumerate"
+      ><span class="hs-identifier hs-var"
+	>enumerate</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412330"
+      ><span class="hs-identifier hs-var"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-glyph"
+      >\</span
+      ><a name="local-1627412332"
+      ><a href="#local-1627412332"
+	><span class="hs-identifier"
+	  >a</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#enumerate"
+      ><span class="hs-identifier hs-var"
+	>enumerate</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412331"
+      ><span class="hs-identifier hs-var"
+	>f</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412332"
+      ><span class="hs-identifier hs-var"
+	>a</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-805306538"
+      ><span class="hs-identifier"
+	>fail</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >_</span
+      ><span class=""
+      >   </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >mzero</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-keyword"
+      >instance</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >MonadTrans</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#ListT"
+      ><span class="hs-identifier hs-type"
+	>ListT</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-1912603626"
+      ><span class="hs-identifier"
+	>lift</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412326"
+      ><a href="#local-1627412326"
+	><span class="hs-identifier"
+	  >m</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Select"
+      ><span class="hs-identifier hs-var"
+	>Select</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-keyword"
+      >do</span
+      ><span class=""
+      >
+        </span
+      ><a name="local-1627412327"
+      ><a href="#local-1627412327"
+	><span class="hs-identifier"
+	  >a</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >&lt;-</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >lift</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412326"
+      ><span class="hs-identifier hs-var"
+	>m</span
+	></a
+      ><span class=""
+      >
+        </span
+      ><a href="Pipes.html#yield"
+      ><span class="hs-identifier hs-var"
+	>yield</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412327"
+      ><span class="hs-identifier hs-var"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-keyword"
+      >instance</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >MonadIO</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412324"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >MonadIO</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#ListT"
+      ><span class="hs-identifier hs-type"
+	>ListT</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412324"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-1912603619"
+      ><span class="hs-identifier"
+	>liftIO</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412325"
+      ><a href="#local-1627412325"
+	><span class="hs-identifier"
+	  >m</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >lift</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >liftIO</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412325"
+      ><span class="hs-identifier hs-var"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-keyword"
+      >instance</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412321"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Alternative</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#ListT"
+      ><span class="hs-identifier hs-type"
+	>ListT</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412321"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-1912603153"
+      ><span class="hs-identifier"
+	>empty</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Select"
+      ><span class="hs-identifier hs-var"
+	>Select</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >return</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-1627412322"
+      ><a href="#local-1627412322"
+	><span class="hs-identifier"
+	  >p1</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1912603154"
+      ><span class="hs-operator"
+	>&lt;|&gt;</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412323"
+      ><a href="#local-1627412323"
+	><span class="hs-identifier"
+	  >p2</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Select"
+      ><span class="hs-identifier hs-var"
+	>Select</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-keyword"
+      >do</span
+      ><span class=""
+      >
+        </span
+      ><a href="Pipes.html#enumerate"
+      ><span class="hs-identifier hs-var"
+	>enumerate</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412322"
+      ><span class="hs-identifier hs-var"
+	>p1</span
+	></a
+      ><span class=""
+      >
+        </span
+      ><a href="Pipes.html#enumerate"
+      ><span class="hs-identifier hs-var"
+	>enumerate</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412323"
+      ><span class="hs-identifier hs-var"
+	>p2</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-keyword"
+      >instance</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412320"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >MonadPlus</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#ListT"
+      ><span class="hs-identifier hs-type"
+	>ListT</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412320"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-1912603129"
+      ><span class="hs-identifier"
+	>mzero</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >empty</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-1912603131"
+      ><span class="hs-identifier"
+	>mplus</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-operator hs-var"
+      >&lt;|&gt;</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-keyword"
+      >instance</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >MFunctor</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#ListT"
+      ><span class="hs-identifier hs-type"
+	>ListT</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-1912603752"
+      ><span class="hs-identifier"
+	>hoist</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412319"
+      ><a href="#local-1627412319"
+	><span class="hs-identifier"
+	  >morph</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Select"
+      ><span class="hs-identifier hs-var"
+	>Select</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-operator hs-var"
+      >.</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >hoist</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412319"
+      ><span class="hs-identifier hs-var"
+	>morph</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-operator hs-var"
+      >.</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#enumerate"
+      ><span class="hs-identifier hs-var"
+	>enumerate</span
+	></a
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-keyword"
+      >instance</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412317"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Monoid</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#ListT"
+      ><span class="hs-identifier hs-type"
+	>ListT</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412317"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412318"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-1912602695"
+      ><span class="hs-identifier"
+	>mempty</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >empty</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-1912602697"
+      ><span class="hs-identifier"
+	>mappend</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-operator hs-var"
+      >&lt;|&gt;</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-keyword"
+      >instance</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >MonadState</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412313"
+      ><span class="hs-identifier hs-type"
+	>s</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412314"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >MonadState</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412313"
+      ><span class="hs-identifier hs-type"
+	>s</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#ListT"
+      ><span class="hs-identifier hs-type"
+	>ListT</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412314"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-1912603898"
+      ><span class="hs-identifier"
+	>get</span
+	></a
+      ><span class=""
+      >     </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >lift</span
+      ><span class=""
+      >  </span
+      ><span class="hs-identifier hs-var"
+      >get</span
+      ><span class=""
+      >
+
+    </span
+      ><a name="local-1912603897"
+      ><span class="hs-identifier"
+	>put</span
+	></a
+      ><span class=""
+      >   </span
+      ><a name="local-1627412315"
+      ><a href="#local-1627412315"
+	><span class="hs-identifier"
+	  >s</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >lift</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >put</span
+      ><span class=""
+      >   </span
+      ><a href="#local-1627412315"
+      ><span class="hs-identifier hs-var"
+	>s</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+
+    </span
+      ><a name="local-1912603896"
+      ><span class="hs-identifier"
+	>state</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412316"
+      ><a href="#local-1627412316"
+	><span class="hs-identifier"
+	  >f</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >lift</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >state</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412316"
+      ><span class="hs-identifier hs-var"
+	>f</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-keyword"
+      >instance</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >MonadWriter</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412281"
+      ><span class="hs-identifier hs-type"
+	>w</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412282"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >MonadWriter</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412281"
+      ><span class="hs-identifier hs-type"
+	>w</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#ListT"
+      ><span class="hs-identifier hs-type"
+	>ListT</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412282"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-1912603915"
+      ><span class="hs-identifier"
+	>writer</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >lift</span
+      ><span class=""
+      > </span
+      ><span class="hs-operator hs-var"
+      >.</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >writer</span
+      ><span class=""
+      >
+
+    </span
+      ><a name="local-1912603916"
+      ><span class="hs-identifier"
+	>tell</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412283"
+      ><a href="#local-1627412283"
+	><span class="hs-identifier"
+	  >w</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >lift</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >tell</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412283"
+      ><span class="hs-identifier hs-var"
+	>w</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+
+    </span
+      ><a name="local-1912603918"
+      ><span class="hs-identifier"
+	>listen</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412284"
+      ><a href="#local-1627412284"
+	><span class="hs-identifier"
+	  >l</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Select"
+      ><span class="hs-identifier hs-var"
+	>Select</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412285"
+      ><span class="hs-identifier hs-var"
+	>go</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#enumerate"
+      ><span class="hs-identifier hs-var"
+	>enumerate</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412284"
+      ><span class="hs-identifier hs-var"
+	>l</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >mempty</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+      </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+        </span
+      ><a name="local-1627412285"
+      ><a href="#local-1627412285"
+	><span class="hs-identifier"
+	  >go</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412286"
+      ><a href="#local-1627412286"
+	><span class="hs-identifier"
+	  >p</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412287"
+      ><a href="#local-1627412287"
+	><span class="hs-identifier"
+	  >w</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >case</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412286"
+      ><span class="hs-identifier hs-var"
+	>p</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >of</span
+      ><span class=""
+      >
+            </span
+      ><a href="Pipes.Internal.html#Request"
+      ><span class="hs-identifier hs-var"
+	>Request</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412288"
+      ><a href="#local-1627412288"
+	><span class="hs-identifier"
+	  >a'</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412289"
+      ><a href="#local-1627412289"
+	><span class="hs-identifier"
+	  >fa</span
+	  ></a
+	></a
+      ><span class=""
+      >  </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Request"
+      ><span class="hs-identifier hs-var"
+	>Request</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412288"
+      ><span class="hs-identifier hs-var"
+	>a'</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-glyph"
+      >\</span
+      ><a name="local-1627412290"
+      ><a href="#local-1627412290"
+	><span class="hs-identifier"
+	  >a</span
+	  ></a
+	></a
+      ><span class=""
+      >  </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412285"
+      ><span class="hs-identifier hs-var"
+	>go</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412289"
+      ><span class="hs-identifier hs-var"
+	>fa</span
+	></a
+      ><span class=""
+      >  </span
+      ><a href="#local-1627412290"
+      ><span class="hs-identifier hs-var"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412287"
+      ><span class="hs-identifier hs-var"
+	>w</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+            </span
+      ><a href="Pipes.Internal.html#Respond"
+      ><span class="hs-identifier hs-var"
+	>Respond</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412291"
+      ><a href="#local-1627412291"
+	><span class="hs-identifier"
+	  >b</span
+	  ></a
+	></a
+      ><span class=""
+      >  </span
+      ><a name="local-1627412292"
+      ><a href="#local-1627412292"
+	><span class="hs-identifier"
+	  >fb'</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Respond"
+      ><span class="hs-identifier hs-var"
+	>Respond</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412291"
+      ><span class="hs-identifier hs-var"
+	>b</span
+	></a
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412287"
+      ><span class="hs-identifier hs-var"
+	>w</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >  </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-glyph"
+      >\</span
+      ><a name="local-1627412293"
+      ><a href="#local-1627412293"
+	><span class="hs-identifier"
+	  >b'</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412285"
+      ><span class="hs-identifier hs-var"
+	>go</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412292"
+      ><span class="hs-identifier hs-var"
+	>fb'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412293"
+      ><span class="hs-identifier hs-var"
+	>b'</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412287"
+      ><span class="hs-identifier hs-var"
+	>w</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+            </span
+      ><a href="Pipes.Internal.html#M"
+      ><span class="hs-identifier hs-var"
+	>M</span
+	></a
+      ><span class=""
+      >          </span
+      ><a name="local-1627412294"
+      ><a href="#local-1627412294"
+	><span class="hs-identifier"
+	  >m</span
+	  ></a
+	></a
+      ><span class=""
+      >   </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#M"
+      ><span class="hs-identifier hs-var"
+	>M</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-keyword"
+      >do</span
+      ><span class=""
+      >
+                </span
+      ><span class="hs-special"
+      >(</span
+      ><a name="local-1627412295"
+      ><a href="#local-1627412295"
+	><span class="hs-identifier"
+	  >p'</span
+	  ></a
+	></a
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a name="local-1627412296"
+      ><a href="#local-1627412296"
+	><span class="hs-identifier"
+	  >w'</span
+	  ></a
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >&lt;-</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >listen</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412294"
+      ><span class="hs-identifier hs-var"
+	>m</span
+	></a
+      ><span class=""
+      >
+                </span
+      ><span class="hs-identifier hs-var"
+      >return</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412285"
+      ><span class="hs-identifier hs-var"
+	>go</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412295"
+      ><span class="hs-identifier hs-var"
+	>p'</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-operator hs-var"
+      >$!</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >mappend</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412287"
+      ><span class="hs-identifier hs-var"
+	>w</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412296"
+      ><span class="hs-identifier hs-var"
+	>w'</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+            </span
+      ><a href="Pipes.Internal.html#Pure"
+      ><span class="hs-identifier hs-var"
+	>Pure</span
+	></a
+      ><span class=""
+      >    </span
+      ><a name="local-1627412297"
+      ><a href="#local-1627412297"
+	><span class="hs-identifier"
+	  >r</span
+	  ></a
+	></a
+      ><span class=""
+      >      </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Pure"
+      ><span class="hs-identifier hs-var"
+	>Pure</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412297"
+      ><span class="hs-identifier hs-var"
+	>r</span
+	></a
+      ><span class=""
+      >
+
+    </span
+      ><a name="local-1912603917"
+      ><span class="hs-identifier"
+	>pass</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412298"
+      ><a href="#local-1627412298"
+	><span class="hs-identifier"
+	  >l</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Select"
+      ><span class="hs-identifier hs-var"
+	>Select</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412299"
+      ><span class="hs-identifier hs-var"
+	>go</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#enumerate"
+      ><span class="hs-identifier hs-var"
+	>enumerate</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412298"
+      ><span class="hs-identifier hs-var"
+	>l</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >mempty</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+      </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+        </span
+      ><a name="local-1627412299"
+      ><a href="#local-1627412299"
+	><span class="hs-identifier"
+	  >go</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412300"
+      ><a href="#local-1627412300"
+	><span class="hs-identifier"
+	  >p</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412301"
+      ><a href="#local-1627412301"
+	><span class="hs-identifier"
+	  >w</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >case</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412300"
+      ><span class="hs-identifier hs-var"
+	>p</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >of</span
+      ><span class=""
+      >
+            </span
+      ><a href="Pipes.Internal.html#Request"
+      ><span class="hs-identifier hs-var"
+	>Request</span
+	></a
+      ><span class=""
+      >  </span
+      ><a name="local-1627412302"
+      ><a href="#local-1627412302"
+	><span class="hs-identifier"
+	  >a'</span
+	  ></a
+	></a
+      ><span class=""
+      >     </span
+      ><a name="local-1627412303"
+      ><a href="#local-1627412303"
+	><span class="hs-identifier"
+	  >fa</span
+	  ></a
+	></a
+      ><span class=""
+      >  </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Request"
+      ><span class="hs-identifier hs-var"
+	>Request</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412302"
+      ><span class="hs-identifier hs-var"
+	>a'</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-glyph"
+      >\</span
+      ><a name="local-1627412304"
+      ><a href="#local-1627412304"
+	><span class="hs-identifier"
+	  >a</span
+	  ></a
+	></a
+      ><span class=""
+      >  </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412299"
+      ><span class="hs-identifier hs-var"
+	>go</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412303"
+      ><span class="hs-identifier hs-var"
+	>fa</span
+	></a
+      ><span class=""
+      >  </span
+      ><a href="#local-1627412304"
+      ><span class="hs-identifier hs-var"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412301"
+      ><span class="hs-identifier hs-var"
+	>w</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+            </span
+      ><a href="Pipes.Internal.html#Respond"
+      ><span class="hs-identifier hs-var"
+	>Respond</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a name="local-1627412305"
+      ><a href="#local-1627412305"
+	><span class="hs-identifier"
+	  >b</span
+	  ></a
+	></a
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a name="local-1627412306"
+      ><a href="#local-1627412306"
+	><span class="hs-identifier"
+	  >f</span
+	  ></a
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >  </span
+      ><a name="local-1627412307"
+      ><a href="#local-1627412307"
+	><span class="hs-identifier"
+	  >fb'</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#M"
+      ><span class="hs-identifier hs-var"
+	>M</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >pass</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >return</span
+      ><span class=""
+      >
+                </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.Internal.html#Respond"
+      ><span class="hs-identifier hs-var"
+	>Respond</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412305"
+      ><span class="hs-identifier hs-var"
+	>b</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-glyph"
+      >\</span
+      ><a name="local-1627412308"
+      ><a href="#local-1627412308"
+	><span class="hs-identifier"
+	  >b'</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412299"
+      ><span class="hs-identifier hs-var"
+	>go</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412307"
+      ><span class="hs-identifier hs-var"
+	>fb'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412308"
+      ><span class="hs-identifier hs-var"
+	>b'</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412306"
+      ><span class="hs-identifier hs-var"
+	>f</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412301"
+      ><span class="hs-identifier hs-var"
+	>w</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >\</span
+      ><span class="hs-identifier"
+      >_</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412306"
+      ><span class="hs-identifier hs-var"
+	>f</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412301"
+      ><span class="hs-identifier hs-var"
+	>w</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+            </span
+      ><a href="Pipes.Internal.html#M"
+      ><span class="hs-identifier hs-var"
+	>M</span
+	></a
+      ><span class=""
+      >               </span
+      ><a name="local-1627412309"
+      ><a href="#local-1627412309"
+	><span class="hs-identifier"
+	  >m</span
+	  ></a
+	></a
+      ><span class=""
+      >   </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#M"
+      ><span class="hs-identifier hs-var"
+	>M</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-keyword"
+      >do</span
+      ><span class=""
+      >
+                </span
+      ><span class="hs-special"
+      >(</span
+      ><a name="local-1627412310"
+      ><a href="#local-1627412310"
+	><span class="hs-identifier"
+	  >p'</span
+	  ></a
+	></a
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a name="local-1627412311"
+      ><a href="#local-1627412311"
+	><span class="hs-identifier"
+	  >w'</span
+	  ></a
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >&lt;-</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >listen</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412309"
+      ><span class="hs-identifier hs-var"
+	>m</span
+	></a
+      ><span class=""
+      >
+                </span
+      ><span class="hs-identifier hs-var"
+      >return</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412299"
+      ><span class="hs-identifier hs-var"
+	>go</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412310"
+      ><span class="hs-identifier hs-var"
+	>p'</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-operator hs-var"
+      >$!</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >mappend</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412301"
+      ><span class="hs-identifier hs-var"
+	>w</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412311"
+      ><span class="hs-identifier hs-var"
+	>w'</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+            </span
+      ><a href="Pipes.Internal.html#Pure"
+      ><span class="hs-identifier hs-var"
+	>Pure</span
+	></a
+      ><span class=""
+      >     </span
+      ><a name="local-1627412312"
+      ><a href="#local-1627412312"
+	><span class="hs-identifier"
+	  >r</span
+	  ></a
+	></a
+      ><span class=""
+      >          </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Pure"
+      ><span class="hs-identifier hs-var"
+	>Pure</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412312"
+      ><span class="hs-identifier hs-var"
+	>r</span
+	></a
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-keyword"
+      >instance</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >MonadReader</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412276"
+      ><span class="hs-identifier hs-type"
+	>i</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412277"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >MonadReader</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412276"
+      ><span class="hs-identifier hs-type"
+	>i</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#ListT"
+      ><span class="hs-identifier hs-type"
+	>ListT</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412277"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-1912603885"
+      ><span class="hs-identifier"
+	>ask</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >lift</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >ask</span
+      ><span class=""
+      >
+
+    </span
+      ><a name="local-1912603884"
+      ><span class="hs-identifier"
+	>local</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412278"
+      ><a href="#local-1627412278"
+	><span class="hs-identifier"
+	  >f</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412279"
+      ><a href="#local-1627412279"
+	><span class="hs-identifier"
+	  >l</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Select"
+      ><span class="hs-identifier hs-var"
+	>Select</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >local</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412278"
+      ><span class="hs-identifier hs-var"
+	>f</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#enumerate"
+      ><span class="hs-identifier hs-var"
+	>enumerate</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412279"
+      ><span class="hs-identifier hs-var"
+	>l</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+
+    </span
+      ><a name="local-1912603883"
+      ><span class="hs-identifier"
+	>reader</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412280"
+      ><a href="#local-1627412280"
+	><span class="hs-identifier"
+	  >f</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >lift</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >reader</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412280"
+      ><span class="hs-identifier hs-var"
+	>f</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-keyword"
+      >instance</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >MonadError</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412270"
+      ><span class="hs-identifier hs-type"
+	>e</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412271"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >MonadError</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412270"
+      ><span class="hs-identifier hs-type"
+	>e</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#ListT"
+      ><span class="hs-identifier hs-type"
+	>ListT</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412271"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-1912603875"
+      ><span class="hs-identifier"
+	>throwError</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412272"
+      ><a href="#local-1627412272"
+	><span class="hs-identifier"
+	  >e</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >lift</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >throwError</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412272"
+      ><span class="hs-identifier hs-var"
+	>e</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+
+    </span
+      ><a name="local-1912603876"
+      ><span class="hs-identifier"
+	>catchError</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412273"
+      ><a href="#local-1627412273"
+	><span class="hs-identifier"
+	  >l</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412274"
+      ><a href="#local-1627412274"
+	><span class="hs-identifier"
+	  >k</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Select"
+      ><span class="hs-identifier hs-var"
+	>Select</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >catchError</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#enumerate"
+      ><span class="hs-identifier hs-var"
+	>enumerate</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412273"
+      ><span class="hs-identifier hs-var"
+	>l</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-glyph"
+      >\</span
+      ><a name="local-1627412275"
+      ><a href="#local-1627412275"
+	><span class="hs-identifier"
+	  >e</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#enumerate"
+      ><span class="hs-identifier hs-var"
+	>enumerate</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412274"
+      ><span class="hs-identifier hs-var"
+	>k</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412275"
+      ><span class="hs-identifier hs-var"
+	>e</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >-- | Run a self-contained `ListT` computation</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-identifier"
+      >runListT</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >::</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412184"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#ListT"
+      ><span class="hs-identifier hs-type"
+	>ListT</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412184"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412185"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412184"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><a name="runListT"
+      ><a href="Pipes.html#runListT"
+	><span class="hs-identifier"
+	  >runListT</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412248"
+      ><a href="#local-1627412248"
+	><span class="hs-identifier"
+	  >l</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#runEffect"
+      ><span class="hs-identifier hs-var"
+	>runEffect</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#enumerate"
+      ><span class="hs-identifier hs-var"
+	>enumerate</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412248"
+      ><span class="hs-identifier hs-var"
+	>l</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-operator hs-var"
+      >&gt;&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >mzero</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-pragma"
+      >{-# INLINABLE runListT #-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >{-| 'Enumerable' generalizes 'Data.Foldable.Foldable', converting effectful
+    containers to 'ListT's.
+
+    Instances of 'Enumerable' must satisfy these two laws:
+
+&gt; toListT (return r) = return r
+&gt;
+&gt; toListT $ do x &lt;- m  =  do x &lt;- toListT m
+&gt;              f x           toListT (f x)
+
+    In other words, 'toListT' is monad morphism.
+-}</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-keyword"
+      >class</span
+      ><span class=""
+      > </span
+      ><a name="Enumerable"
+      ><a href="Pipes.html#Enumerable"
+	><span class="hs-identifier"
+	  >Enumerable</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412161"
+      ><a href="#local-1627412161"
+	><span class="hs-identifier"
+	  >t</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+    </span
+      ><a name="toListT"
+      ><a href="Pipes.html#toListT"
+	><span class="hs-identifier"
+	  >toListT</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >::</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412162"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412161"
+      ><span class="hs-identifier hs-type"
+	>t</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412162"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412163"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#ListT"
+      ><span class="hs-identifier hs-type"
+	>ListT</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412162"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412163"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-keyword"
+      >instance</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Enumerable"
+      ><span class="hs-identifier hs-type"
+	>Enumerable</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#ListT"
+      ><span class="hs-identifier hs-type"
+	>ListT</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-1912624813"
+      ><a href="Pipes.html#toListT"
+	><span class="hs-identifier"
+	  >toListT</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >id</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-keyword"
+      >instance</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Enumerable"
+      ><span class="hs-identifier hs-type"
+	>Enumerable</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >IdentityT</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-1912624813"
+      ><a href="Pipes.html#toListT"
+	><span class="hs-identifier"
+	  >toListT</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412268"
+      ><a href="#local-1627412268"
+	><span class="hs-identifier"
+	  >m</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Select"
+      ><span class="hs-identifier hs-var"
+	>Select</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-operator hs-var"
+      >$</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >do</span
+      ><span class=""
+      >
+        </span
+      ><a name="local-1627412269"
+      ><a href="#local-1627412269"
+	><span class="hs-identifier"
+	  >a</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >&lt;-</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >lift</span
+      ><span class=""
+      > </span
+      ><span class="hs-operator hs-var"
+      >$</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >runIdentityT</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412268"
+      ><span class="hs-identifier hs-var"
+	>m</span
+	></a
+      ><span class=""
+      >
+        </span
+      ><a href="Pipes.html#yield"
+      ><span class="hs-identifier hs-var"
+	>yield</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412269"
+      ><span class="hs-identifier hs-var"
+	>a</span
+	></a
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-keyword"
+      >instance</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Enumerable"
+      ><span class="hs-identifier hs-type"
+	>Enumerable</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >MaybeT</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-1912624813"
+      ><a href="Pipes.html#toListT"
+	><span class="hs-identifier"
+	  >toListT</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412265"
+      ><a href="#local-1627412265"
+	><span class="hs-identifier"
+	  >m</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Select"
+      ><span class="hs-identifier hs-var"
+	>Select</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-operator hs-var"
+      >$</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >do</span
+      ><span class=""
+      >
+        </span
+      ><a name="local-1627412266"
+      ><a href="#local-1627412266"
+	><span class="hs-identifier"
+	  >x</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >&lt;-</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >lift</span
+      ><span class=""
+      > </span
+      ><span class="hs-operator hs-var"
+      >$</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >runMaybeT</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412265"
+      ><span class="hs-identifier hs-var"
+	>m</span
+	></a
+      ><span class=""
+      >
+        </span
+      ><span class="hs-keyword"
+      >case</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412266"
+      ><span class="hs-identifier hs-var"
+	>x</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >of</span
+      ><span class=""
+      >
+            </span
+      ><span class="hs-identifier hs-var"
+      >Nothing</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >return</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+            </span
+      ><span class="hs-identifier hs-var"
+      >Just</span
+      ><span class=""
+      > </span
+      ><a name="local-1627412267"
+      ><a href="#local-1627412267"
+	><span class="hs-identifier"
+	  >a</span
+	  ></a
+	></a
+      ><span class=""
+      >  </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#yield"
+      ><span class="hs-identifier hs-var"
+	>yield</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412267"
+      ><span class="hs-identifier hs-var"
+	>a</span
+	></a
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-keyword"
+      >instance</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Enumerable"
+      ><span class="hs-identifier hs-type"
+	>Enumerable</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >ErrorT</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412261"
+      ><span class="hs-identifier hs-type"
+	>e</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-1912624813"
+      ><a href="Pipes.html#toListT"
+	><span class="hs-identifier"
+	  >toListT</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412262"
+      ><a href="#local-1627412262"
+	><span class="hs-identifier"
+	  >m</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Select"
+      ><span class="hs-identifier hs-var"
+	>Select</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-operator hs-var"
+      >$</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >do</span
+      ><span class=""
+      >
+        </span
+      ><a name="local-1627412263"
+      ><a href="#local-1627412263"
+	><span class="hs-identifier"
+	  >x</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >&lt;-</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >lift</span
+      ><span class=""
+      > </span
+      ><span class="hs-operator hs-var"
+      >$</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >runErrorT</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412262"
+      ><span class="hs-identifier hs-var"
+	>m</span
+	></a
+      ><span class=""
+      >
+        </span
+      ><span class="hs-keyword"
+      >case</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412263"
+      ><span class="hs-identifier hs-var"
+	>x</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >of</span
+      ><span class=""
+      >
+            </span
+      ><span class="hs-identifier hs-var"
+      >Left</span
+      ><span class=""
+      >  </span
+      ><span class="hs-identifier"
+      >_</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >return</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+            </span
+      ><span class="hs-identifier hs-var"
+      >Right</span
+      ><span class=""
+      > </span
+      ><a name="local-1627412264"
+      ><a href="#local-1627412264"
+	><span class="hs-identifier"
+	  >a</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#yield"
+      ><span class="hs-identifier hs-var"
+	>yield</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412264"
+      ><span class="hs-identifier hs-var"
+	>a</span
+	></a
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >{-| Consume the first value from a 'Producer'
+
+    'next' either fails with a 'Left' if the 'Producer' terminates or succeeds
+    with a 'Right' providing the next value and the remainder of the 'Producer'.
+-}</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-identifier"
+      >next</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >::</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412182"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#Producer"
+      ><span class="hs-identifier hs-type"
+	>Producer</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412181"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412182"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412183"
+      ><span class="hs-identifier hs-type"
+	>r</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412182"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >Either</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412183"
+      ><span class="hs-identifier hs-type"
+	>r</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412181"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#Producer"
+      ><span class="hs-identifier hs-type"
+	>Producer</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412181"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412182"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412183"
+      ><span class="hs-identifier hs-type"
+	>r</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><a name="next"
+      ><a href="Pipes.html#next"
+	><span class="hs-identifier"
+	  >next</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412249"
+      ><span class="hs-identifier hs-var"
+	>go</span
+	></a
+      ><span class=""
+      >
+  </span
+      ><span class="hs-keyword"
+      >where</span
+      ><span class=""
+      >
+    </span
+      ><a name="local-1627412249"
+      ><a href="#local-1627412249"
+	><span class="hs-identifier"
+	  >go</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412250"
+      ><a href="#local-1627412250"
+	><span class="hs-identifier"
+	  >p</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >case</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412250"
+      ><span class="hs-identifier hs-var"
+	>p</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-keyword"
+      >of</span
+      ><span class=""
+      >
+        </span
+      ><a href="Pipes.Internal.html#Request"
+      ><span class="hs-identifier hs-var"
+	>Request</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412251"
+      ><a href="#local-1627412251"
+	><span class="hs-identifier"
+	  >v</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >_</span
+      ><span class=""
+      >  </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#closed"
+      ><span class="hs-identifier hs-var"
+	>closed</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412251"
+      ><span class="hs-identifier hs-var"
+	>v</span
+	></a
+      ><span class=""
+      >
+        </span
+      ><a href="Pipes.Internal.html#Respond"
+      ><span class="hs-identifier hs-var"
+	>Respond</span
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412252"
+      ><a href="#local-1627412252"
+	><span class="hs-identifier"
+	  >a</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412253"
+      ><a href="#local-1627412253"
+	><span class="hs-identifier"
+	  >fu</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >return</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >Right</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="#local-1627412252"
+      ><span class="hs-identifier hs-var"
+	>a</span
+	></a
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412253"
+      ><span class="hs-identifier hs-var"
+	>fu</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+        </span
+      ><a href="Pipes.Internal.html#M"
+      ><span class="hs-identifier hs-var"
+	>M</span
+	></a
+      ><span class=""
+      >         </span
+      ><a name="local-1627412254"
+      ><a href="#local-1627412254"
+	><span class="hs-identifier"
+	  >m</span
+	  ></a
+	></a
+      ><span class=""
+      >  </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412254"
+      ><span class="hs-identifier hs-var"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-operator hs-var"
+      >&gt;&gt;=</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412249"
+      ><span class="hs-identifier hs-var"
+	>go</span
+	></a
+      ><span class=""
+      >
+        </span
+      ><a href="Pipes.Internal.html#Pure"
+      ><span class="hs-identifier hs-var"
+	>Pure</span
+	></a
+      ><span class=""
+      >    </span
+      ><a name="local-1627412255"
+      ><a href="#local-1627412255"
+	><span class="hs-identifier"
+	  >r</span
+	  ></a
+	></a
+      ><span class=""
+      >    </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >return</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >Left</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412255"
+      ><span class="hs-identifier hs-var"
+	>r</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-pragma"
+      >{-# INLINABLE next #-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >-- | Convert a 'F.Foldable' to a 'Producer'</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-identifier"
+      >each</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >::</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412180"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Foldable</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412178"
+      ><span class="hs-identifier hs-type"
+	>f</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412178"
+      ><span class="hs-identifier hs-type"
+	>f</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412179"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#Producer%27"
+      ><span class="hs-identifier hs-type"
+	>Producer'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412179"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412180"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><a name="each"
+      ><a href="Pipes.html#each"
+	><span class="hs-identifier"
+	  >each</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >F</span
+      ><span class="hs-operator hs-var"
+      >.</span
+      ><span class="hs-identifier hs-var"
+      >foldr</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-glyph"
+      >\</span
+      ><a name="local-1627412256"
+      ><a href="#local-1627412256"
+	><span class="hs-identifier"
+	  >a</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412257"
+      ><a href="#local-1627412257"
+	><span class="hs-identifier"
+	  >p</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#yield"
+      ><span class="hs-identifier hs-var"
+	>yield</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412256"
+      ><span class="hs-identifier hs-var"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-operator hs-var"
+      >&gt;&gt;</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412257"
+      ><span class="hs-identifier hs-var"
+	>p</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-var"
+      >return</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-pragma"
+      >{-# INLINABLE each #-}</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-comment"
+      >{-  The above code is the same as:
+
+&gt; each = Data.Foldable.mapM_ yield
+
+    ... except writing it directly in terms of `Data.Foldable.foldr` improves
+    build/foldr fusion
+-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >-- | Convert an 'Enumerable' to a 'Producer'</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-identifier"
+      >every</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >::</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412176"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class="hs-special"
+      >,</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#Enumerable"
+      ><span class="hs-identifier hs-type"
+	>Enumerable</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412175"
+      ><span class="hs-identifier hs-type"
+	>t</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412175"
+      ><span class="hs-identifier hs-type"
+	>t</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412176"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412177"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#Producer%27"
+      ><span class="hs-identifier hs-type"
+	>Producer'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412177"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412176"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><a name="every"
+      ><a href="Pipes.html#every"
+	><span class="hs-identifier"
+	  >every</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412258"
+      ><a href="#local-1627412258"
+	><span class="hs-identifier"
+	  >it</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#discard"
+      ><span class="hs-identifier hs-var"
+	>discard</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="Pipes.Core.html#%3E%5C%5C"
+      ><span class="hs-operator hs-var"
+	>&gt;\\</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#enumerate"
+      ><span class="hs-identifier hs-var"
+	>enumerate</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><a href="Pipes.html#toListT"
+      ><span class="hs-identifier hs-var"
+	>toListT</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412258"
+      ><span class="hs-identifier hs-var"
+	>it</span
+	></a
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-pragma"
+      >{-# INLINABLE every #-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >-- | Discards a value</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-identifier"
+      >discard</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >::</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412174"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412173"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412174"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><a name="discard"
+      ><a href="Pipes.html#discard"
+	><span class="hs-identifier"
+	  >discard</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-identifier"
+      >_</span
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-var"
+      >return</span
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-pragma"
+      >{-# INLINABLE discard #-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >-- | ('&gt;-&gt;') with the arguments flipped</span
+      ><span class=""
+      >
+</span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-operator"
+      >&lt;-&lt;</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >::</span
+      ><span class=""
+      > </span
+      ><span class="hs-identifier hs-type"
+      >Monad</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412169"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >=&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412166"
+      ><span class="hs-identifier hs-type"
+	>b</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412167"
+      ><span class="hs-identifier hs-type"
+	>c'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412168"
+      ><span class="hs-identifier hs-type"
+	>c</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412169"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412170"
+      ><span class="hs-identifier hs-type"
+	>r</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-comment"
+      >-- ^</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412171"
+      ><span class="hs-identifier hs-type"
+	>a'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412172"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-special"
+      >(</span
+      ><span class="hs-special"
+      >)</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412166"
+      ><span class="hs-identifier hs-type"
+	>b</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412169"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412170"
+      ><span class="hs-identifier hs-type"
+	>r</span
+	></a
+      ><span class=""
+      >
+    </span
+      ><span class="hs-comment"
+      >-- ^</span
+      ><span class=""
+      >
+    </span
+      ><span class="hs-glyph"
+      >-&gt;</span
+      ><span class=""
+      > </span
+      ><a href="Pipes.Internal.html#Proxy"
+      ><span class="hs-identifier hs-type"
+	>Proxy</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412171"
+      ><span class="hs-identifier hs-type"
+	>a'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412172"
+      ><span class="hs-identifier hs-type"
+	>a</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412167"
+      ><span class="hs-identifier hs-type"
+	>c'</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412168"
+      ><span class="hs-identifier hs-type"
+	>c</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412169"
+      ><span class="hs-identifier hs-type"
+	>m</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412170"
+      ><span class="hs-identifier hs-type"
+	>r</span
+	></a
+      ><span class=""
+      >
+</span
+      ><a name="local-1627412259"
+      ><a href="#local-1627412259"
+	><span class="hs-identifier"
+	  >p2</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="%3C-%3C"
+      ><a href="Pipes.html#%3C-%3C"
+	><span class="hs-operator"
+	  >&lt;-&lt;</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><a name="local-1627412260"
+      ><a href="#local-1627412260"
+	><span class="hs-identifier"
+	  >p1</span
+	  ></a
+	></a
+      ><span class=""
+      > </span
+      ><span class="hs-glyph"
+      >=</span
+      ><span class=""
+      > </span
+      ><a href="#local-1627412260"
+      ><span class="hs-identifier hs-var"
+	>p1</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="Pipes.html#%3E-%3E"
+      ><span class="hs-operator hs-var"
+	>&gt;-&gt;</span
+	></a
+      ><span class=""
+      > </span
+      ><a href="#local-1627412259"
+      ><span class="hs-identifier hs-var"
+	>p2</span
+	></a
+      ><span class=""
+      >
+</span
+      ><span class="hs-pragma"
+      >{-# INLINABLE (&lt;-&lt;) #-}</span
+      ><span class=""
+      >
+
+</span
+      ><span class="hs-comment"
+      >{- $reexports
+    &quot;Control.Monad&quot; re-exports 'void'
+
+    &quot;Control.Monad.IO.Class&quot; re-exports 'MonadIO'.
+
+    &quot;Control.Monad.Trans.Class&quot; re-exports 'MonadTrans'.
+
+    &quot;Control.Monad.Morph&quot; re-exports 'MFunctor'.
+
+    &quot;Data.Foldable&quot; re-exports 'Foldable' (the class name only).
+-}</span
+      ><span class=""
+      >
+</span
+      ></pre
+    ></body
+  ></html
+>
